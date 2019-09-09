@@ -1,0 +1,21 @@
+{
+	"name": "EDLProd1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://testedlstorgen.dfs.core.windows.net",
+			"tenant": "72f988bf-86f1-41af-91ab-2d7cd011db47",
+			"servicePrincipalId": "0c76a583-1156-4896-a291-0c787bf5d771",
+			"servicePrincipalKey": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AKVprod1",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "spn-key"
+			}
+		}
+	}
+}

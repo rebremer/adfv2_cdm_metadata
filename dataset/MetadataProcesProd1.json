@@ -1,0 +1,19 @@
+{
+	"name": "MetadataProcesProd1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Collibra",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureBlob",
+		"typeProperties": {
+			"format": {
+				"type": "JsonFormat"
+			},
+			"fileName": "MetadataProcess.json",
+			"folderPath": "metaprocesprod1"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

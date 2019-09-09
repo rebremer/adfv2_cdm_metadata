@@ -1,0 +1,11 @@
+{
+	"name": "AKVprod1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://test-edlprod1-kv.vault.azure.net/"
+		}
+	}
+}

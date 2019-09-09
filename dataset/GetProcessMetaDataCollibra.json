@@ -1,0 +1,39 @@
+{
+	"name": "GetProcessMetaDataCollibra",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Collibra",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "MetadataProcess.json",
+				"container": "metaprocesprod1"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"retentionPeriod": {
+					"type": "integer"
+				},
+				"sourceSystem": {
+					"type": "string"
+				},
+				"dataowner": {
+					"type": "string"
+				},
+				"privacyLevel": {
+					"type": "string"
+				},
+				"generationData": {
+					"type": "string"
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
