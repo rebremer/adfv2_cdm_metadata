@@ -1,0 +1,1 @@
+Azure Data Factory pipeline that copies data from a SQLDB to ADLSgen2 with metadata included complying to the CDM jsonschema
