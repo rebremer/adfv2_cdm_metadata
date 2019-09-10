@@ -1,4 +1,4 @@
-# Azure Data Factory (ADFv2) CDM metadata pipeline:
+## Azure Data Factory (ADFv2) pipeline adding metadata using common data model (CDM) structure to copied data ##
 
 The following steps are executed:
 
@@ -7,19 +7,19 @@ The following steps are executed:
 - Copy tables from SQLDB to ADLS gen 2 where every table is a File System with the following folder structure: Table_name/yyyy/MM/dd
 - Add process metadata, technical metadata and post processing metadata (timestamp) in a model.json file to the folder structure for each dataset. Model.json is compliant to the Common Data Model (cdm) jsonschema. An Azure Function in Python is used for this, ADFv2 pipeline is depicted as follows:
 
-Base pipeline:
+###Base pipeline:###
 
 ![Base pipeline](https://github.com/rebremer/adfv2_cdm_metadata/blob/master/adfv2pipelineimages/basepipeline.png)
 
-Copy and metadata pipeline including Azure Function in Python:
+###Copy and metadata pipeline including Azure Function in Python:###
 
 ![Copy_metadata pipeline](https://github.com/rebremer/adfv2_cdm_metadata/blob/master/adfv2pipelineimages/copy_cdm_pipeline.png)
 
-Data and model.json metadata in ADLS gen2 Filesystem:
+###Data and model.json metadata in ADLS gen2 Filesystem:###
 
 ![Data and model.json](https://github.com/rebremer/adfv2_cdm_metadata/blob/master/adfv2pipelineimages/data_medata_adlsgen2.png)
 
-Content of model.json
+###Content of model.json###
 
 ```json
 {
