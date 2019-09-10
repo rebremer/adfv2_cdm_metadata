@@ -5,7 +5,8 @@ The following steps are executed:
 - Get process metadata from blob storage (data owner, data source, privacy level, classification)
 - Get technical metadata from tables in SQLDB (schema name, tablename, fieldname, field type)
 - Copy tables from SQLDB to ADLS gen 2 where every table is a File System with the following folder structure: Table_name/yyyy/MM/dd
-- Add process metadata, technical metadata and post processing metadata (timestamp) in a model.json file to the folder structure for each dataset. Model.json is compliant to the Common Data Model (cdm) jsonschema. An Azure Function in Python is used for this, ADFv2 pipeline is depicted as follows:
+- Add process metadata, technical metadata and post processing metadata (timestamp) in a model.json file to the folder structure for each dataset. Model.json is compliant to the Common Data Model (cdm) jsonschema. An Azure Function in Python is used for this, in which authentication is done with a Managed Service Identity (MSI) and RBAC role "Storage Blob Data Contributor". 
+ADFv2 pipeline is depicted as follows:
 
 #### Base pipeline: ####
 
@@ -14,6 +15,10 @@ The following steps are executed:
 #### Copy and metadata pipeline including Azure Function in Python: ####
 
 ![Copy_metadata pipeline](https://github.com/rebremer/adfv2_cdm_metadata/blob/master/adfv2pipelineimages/copy_cdm_pipeline.png)
+
+#### Copy and metadata pipeline including Azure Function in Python: ####
+
+![Managed Service Identity (MSI) of Azure Function with RBAC role Storage Blob Data Contributor on ADLS gen 2 File System](https://github.com/rebremer/adfv2_cdm_metadata/blob/master/adfv2pipelineimages/MSI_AzureFunction_RBAC_FileSystem.png)
 
 #### Data and model.json metadata in ADLS gen2 Filesystem: ####
 

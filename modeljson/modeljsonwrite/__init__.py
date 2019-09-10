@@ -80,26 +80,10 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     model_json_string = json.loads(model_json)
     schema_file=loadSchema()
     validate(instance=model_json_string, schema=schema_file)
-
-    RESOURCE = "https://storage.azure.com/"
-    CLIENT_ID = "<your client id>"
-    CLIENT_SECRET = "<your secret id>"
-    TENANT_ID = "<your tenant id>"
-    AUTHORITY_URL = "https://login.microsoftonline.com/" + TENANT_ID
-
-    context = AuthenticationContext(AUTHORITY_URL)
-    token = context.acquire_token_with_client_credentials(
-        RESOURCE,
-        CLIENT_ID,
-        CLIENT_SECRET)
-    tokenCre = TokenCredential(token["accessToken"])        
-    #credentials = MSIAuthentication(resource='https://storage.azure.com/')
-    #return func.HttpResponse(credentials["accessToken])
-    #tokenCre = TokenCredential(credentials["accessToken])
-
-    blob_service = BlockBlobService("testedlstorgen", token_credential=tokenCre)
-    #blob_service.create_blob_from_text('testedlprod1container', 'dboBuildVersion.txt/2019/09/08/model3.json', "rene")
-
+    
+    credentials = MSIAuthentication(resource='https://storage.azure.com/')    
+    blob_service = BlockBlobService("testedlstorgen", token_credential=credentials)
+ 
     blob_service.create_blob_from_text(par_filepath[0:par_filepath.find("/")], par_filepath[par_filepath.find("/")+1:] + "/model.json", model_json)
     result = {"status": "ok"}
 
