@@ -1,4 +1,6 @@
-# Azure Data Factory pipeline that does the following:
+# Azure Data Factory (ADFv2) CDM metadata pipeline:
+
+The following steps are executed:
 
 - Get process metadata from blob storage (data owner, data source, privacy level, classification)
 - Get technical metadata from tables in SQLDB (schema name, tablename, fieldname, field type)
