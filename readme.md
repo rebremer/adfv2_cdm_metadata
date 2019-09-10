@@ -19,7 +19,7 @@ Data and model.json metadata in ADLS gen2 Filesystem:
 
 ![Data and model.json](https://github.com/rebremer/adfv2_cdm_metadata/blob/master/adfv2pipelineimages/data_medata_adlsgen2.png)
 
-Code snippet
+Content of model.json
 
 ```json
 {
