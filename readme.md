@@ -16,7 +16,7 @@ ADFv2 pipeline is depicted as follows:
 
 ![Copy_metadata pipeline](https://github.com/rebremer/adfv2_cdm_metadata/blob/master/adfv2pipelineimages/copy_cdm_pipeline.png)
 
-#### Copy and metadata pipeline including Azure Function in Python: ####
+#### Managed Service Identity (MSI) of Azure Function with RBAC role Storage Blob Data Contributor on ADLS gen 2 File System: ####
 
 ![Managed Service Identity (MSI) of Azure Function with RBAC role Storage Blob Data Contributor on ADLS gen 2 File System](https://github.com/rebremer/adfv2_cdm_metadata/blob/master/adfv2pipelineimages/MSI_AzureFunction_RBAC_FileSystem.png)
 
