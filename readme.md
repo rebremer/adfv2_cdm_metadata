@@ -1,4 +1,4 @@
-### Azure Data Factory (ADFv2) copy pipeline adding metadata using common data model (CDM) syntax ###
+### Azure Data Factory (ADFv2) copy pipeline adding metadata with common data model (CDM) syntax ###
 
 The following steps are executed:
 
