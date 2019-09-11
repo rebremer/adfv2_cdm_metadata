@@ -41,3 +41,4 @@ venv.bak/
 __pycache__/
 *.py[cod]
 *$py.class
+modeljson/modeljson.zip

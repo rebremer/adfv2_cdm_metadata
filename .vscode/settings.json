@@ -1,0 +1,7 @@
+{
+    "azureFunctions.deploySubpath": "modeljson/modeljson.zip",
+    "azureFunctions.projectLanguage": "Python",
+    "azureFunctions.projectRuntime": "~2",
+    "debug.internalConsoleOptions": "neverOpen",
+    "azureFunctions.preDeployTask": "func: pack"
+}
