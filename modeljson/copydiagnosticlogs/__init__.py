@@ -50,10 +50,11 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
     generator = blob_service_from.list_blobs("$logs")
     for blob in generator:
-        if blob.name[-4:] == ".log":
-            #logging.info("\t Blob name: " + blob.name[:-4])
-            input_blob = blob_service_from.get_blob_to_text("$logs", blob.name)
-            blob_service_to.create_blob_from_text(to_storage_account_container, blob.name, str(input_blob))
+        #if blob.name[-4:] == ".log":
+        #    #logging.info("\t Blob name: " + blob.name[:-4])
+        input_blob = blob_service_from.get_blob_to_text("$logs", blob.name)
+        logging.info(blob.name)
+        blob_service_to.create_blob_from_text(to_storage_account_container, blob.name, str(input_blob.content))
 
     result = {"status": "ok"}
     return func.HttpResponse(str(result))
