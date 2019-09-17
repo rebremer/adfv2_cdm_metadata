@@ -19,6 +19,13 @@ import json
 
 from msrestazure.azure_active_directory import MSIAuthentication
 
+#
+# Diagnostic logs in ADLS gen 2 can be enabled by executing the following Powershell scripts, see https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-known-issues
+# 
+# $storageAccount = Get-AzStorageAccount -ResourceGroupName <resourceGroup> -Name <storageAccountName>
+# Set-AzStorageServiceLoggingProperty -Context $storageAccount.Context -ServiceType Blob -LoggingOperations read,write,delete -RetentionDays <days> -Version 2
+#
+
 def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
 
