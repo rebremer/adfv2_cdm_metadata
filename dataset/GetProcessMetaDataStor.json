@@ -1,10 +1,6 @@
 {
-	"name": "GetProcessMetaDataCollibra",
+	"name": "GetProcessMetaDataStor",
 	"properties": {
-		"linkedServiceName": {
-			"referenceName": "Collibra",
-			"type": "LinkedServiceReference"
-		},
 		"annotations": [],
 		"type": "Json",
 		"typeProperties": {
