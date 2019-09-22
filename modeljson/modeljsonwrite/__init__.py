@@ -25,21 +25,22 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
     par_tableStructureArray = inputreq['tableStructureArray']
     par_tableNameArray = inputreq['tableNameArray']
+    par_ADLSgen2stor = inputreq['ADLSgen2stor']
     par_filepath = inputreq['filepath']
-    par_processMetaDataCollibra = inputreq['processMetaDataCollibra']
+    par_processMetaDataStor = inputreq['processMetaDataStor']
     #par_processMetaData = json.loads(req.params.get('par_processMetaData'))
 
     d = collections.OrderedDict()
 
     # set header
-    d['name'] = "OrdersProductsV3"
-    d['description'] = ""
+    d['name'] = "BlogMetaData"
+    d['description'] = "Example model.json using CDM json schema"
     d['version'] = "1.0"
     annotation = collections.OrderedDict()
-    annotation['retentionPeriod'] = par_processMetaDataCollibra[0]['firstRow']['retentionPeriod']
-    annotation['sourceSystem'] = par_processMetaDataCollibra[0]['firstRow']['sourceSystem']
-    annotation['IngestionDate'] = par_processMetaDataCollibra[0]['firstRow']['generationData']
-    annotation['privacyLevel'] = par_processMetaDataCollibra[0]['firstRow']['privacyLevel']
+    annotation['retentionPeriod'] = par_processMetaDataStor[0]['firstRow']['retentionPeriod']
+    annotation['sourceSystem'] = par_processMetaDataStor[0]['firstRow']['sourceSystem']
+    annotation['IngestionDate'] = par_processMetaDataStor[0]['firstRow']['generationData']
+    annotation['privacyLevel'] = par_processMetaDataStor[0]['firstRow']['privacyLevel']
     d['annotation'] = annotation
 
     # set entities
@@ -82,7 +83,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     validate(instance=model_json_string, schema=schema_file)
     
     credentials = MSIAuthentication(resource='https://storage.azure.com/')    
-    blob_service = BlockBlobService("testedlstorgen", token_credential=credentials)
+    blob_service = BlockBlobService(par_ADLSgen2stor, token_credential=credentials)
  
     blob_service.create_blob_from_text(par_filepath[0:par_filepath.find("/")], par_filepath[par_filepath.find("/")+1:] + "/model.json", model_json)
     result = {"status": "ok"}
