@@ -73,7 +73,7 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "SQLDBtables",
+									"referenceName": "GetTableDataFromSQLDB",
 									"type": "DatasetReference",
 									"parameters": {
 										"cw_schema": "@item().source.schema",
@@ -105,7 +105,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"dataset": {
-									"referenceName": "SQLDBtables",
+									"referenceName": "GetTableDataFromSQLDB",
 									"type": "DatasetReference",
 									"parameters": {
 										"cw_schema": "@item().source.schema",
