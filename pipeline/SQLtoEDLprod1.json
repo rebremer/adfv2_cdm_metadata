@@ -144,6 +144,10 @@
 									"value": "@concat('{\"tableStructureArray\":', string(variables('tableStructureArray')), ',\"processMetaDataCollibra\":', string(variables('processMetaDataCollibra')), ',\"tableNameArray\":', string(variables('tableNameArray')), ',\"filepath\":\"', concat('testedlprod1container/', item().destination.fileName, '/', utcnow('yyyy'), '/', utcnow('MM'), '/', utcnow('dd')), '\"}')",
 									"type": "Expression"
 								}
+							},
+							"linkedServiceName": {
+								"referenceName": "Blogmetadatafunc",
+								"type": "LinkedServiceReference"
 							}
 						},
 						{
