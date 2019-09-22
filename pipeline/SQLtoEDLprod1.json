@@ -141,7 +141,7 @@
 								"functionName": "blogmetadataHTTP",
 								"method": "POST",
 								"body": {
-									"value": "@concat('{\"tableStructureArray\":', string(variables('tableStructureArray')), ',\"processMetaDataCollibra\":', string(variables('processMetaDataCollibra')), ',\"tableNameArray\":', string(variables('tableNameArray')), ',\"filepath\":\"', concat('testedlprod1container/', item().destination.fileName, '/', utcnow('yyyy'), '/', utcnow('MM'), '/', utcnow('dd')), '\"}')",
+									"value": "@concat('{\"tableStructureArray\":', string(variables('tableStructureArray')), ',\"processMetaDataStor\":', string(variables('processMetaDataStor')), ',\"tableNameArray\":', string(variables('tableNameArray')), ',\"ADLSgen2stor\":\"', string(pipeline().parameters.ADLSGen2Stor), '\",\"filepath\":\"', concat(pipeline().parameters.ADLSGen2FileSystem,'/', item().destination.fileName, '/', utcnow('yyyy'), '/', utcnow('MM'), '/', utcnow('dd')), '\"}')",
 									"type": "Expression"
 								}
 							},
