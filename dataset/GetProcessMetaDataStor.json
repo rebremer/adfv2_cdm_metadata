@@ -1,6 +1,10 @@
 {
 	"name": "GetProcessMetaDataStor",
 	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Blogmetadatastor",
+			"type": "LinkedServiceReference"
+		},
 		"annotations": [],
 		"type": "Json",
 		"typeProperties": {
