@@ -1,0 +1,11 @@
+{
+	"name": "Blogmetadatastor",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"serviceEndpoint": "https://blogmetadatastor.blob.core.windows.net"
+		}
+	}
+}
