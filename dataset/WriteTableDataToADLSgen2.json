@@ -1,6 +1,10 @@
 {
 	"name": "WriteTableDataToADLSgen2",
 	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Blogadlsgen2stor",
+			"type": "LinkedServiceReference"
+		},
 		"parameters": {
 			"cw_fileName": {
 				"type": "String"
