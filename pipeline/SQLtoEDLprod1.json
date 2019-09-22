@@ -231,7 +231,7 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": "processMetaDataCollibra",
+					"variableName": "processMetaDataStor",
 					"value": [
 						"@activity('GetProcessMetaData').output"
 					]
@@ -351,6 +351,14 @@
 						}
 					}
 				]
+			},
+			"ADLSGen2FileSystem": {
+				"type": "string",
+				"defaultValue": "sqldbdata"
+			},
+			"ADLSGen2Stor": {
+				"type": "string",
+				"defaultValue": "blogadlsgen2stor"
 			}
 		},
 		"variables": {
@@ -360,7 +368,7 @@
 			"tableNameArray": {
 				"type": "Array"
 			},
-			"processMetaDataCollibra": {
+			"processMetaDataStor": {
 				"type": "Array"
 			}
 		},
