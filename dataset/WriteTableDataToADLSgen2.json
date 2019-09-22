@@ -23,7 +23,7 @@
 					"value": "@concat(dataset().cw_fileName, '/', utcnow('yyyy'), '/', utcnow('MM'), '/', utcnow('dd'))",
 					"type": "Expression"
 				},
-				"fileSystem": "testedlprod1container"
+				"fileSystem": "sqldbdata"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
