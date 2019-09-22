@@ -11,7 +11,7 @@
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"fileName": "MetadataProcess.json",
-				"container": "metaprocesprod1"
+				"container": "processmetadata"
 			}
 		},
 		"schema": {
