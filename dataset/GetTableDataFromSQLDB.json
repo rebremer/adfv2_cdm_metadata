@@ -1,5 +1,5 @@
 {
-	"name": "SQLDBtables",
+	"name": "GetTableDataFromSQLDB",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureSqlDatabase1",
