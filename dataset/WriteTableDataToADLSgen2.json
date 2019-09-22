@@ -1,10 +1,6 @@
 {
-	"name": "ADLSprod1folders",
+	"name": "WriteTableDataToADLSgen2",
 	"properties": {
-		"linkedServiceName": {
-			"referenceName": "EDLProd1",
-			"type": "LinkedServiceReference"
-		},
 		"parameters": {
 			"cw_fileName": {
 				"type": "String"

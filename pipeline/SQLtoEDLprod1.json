@@ -83,7 +83,7 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "ADLSprod1folders",
+									"referenceName": "WriteTableDataToADLSgen2",
 									"type": "DatasetReference",
 									"parameters": {
 										"cw_fileName": "@item().destination.fileName"
