@@ -159,6 +159,7 @@
 						},
 						{
 							"name": "Write metadata to folder app - Web app",
+							"description": "Refer to https://github.com/rebremer/managed_identity_authentication how to setup AAD authentication from ADFv2 to Azure Function using Managed Identity",
 							"type": "WebActivity",
 							"dependsOn": [
 								{
