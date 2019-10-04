@@ -1,0 +1,137 @@
+{
+	"name": "RenameTableFiels",
+	"properties": {
+		"activities": [
+			{
+				"name": "CopySQLtoADLSgen2",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.cw_items",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "RenameCopySQLADLSgen2",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [
+								{
+									"name": "Source",
+									"value": "@{item().source.schema}.@{item().source.table}"
+								},
+								{
+									"name": "Destination",
+									"value": "dbtest1//@{item().destination.fileName}"
+								}
+							],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource"
+								},
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
+									}
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "GetTableDataFromSQLDB",
+									"type": "DatasetReference",
+									"parameters": {
+										"cw_schema": "@item().source.schema",
+										"cw_table": "@item().source.table"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "WriteTableDataToADLSgen2",
+									"type": "DatasetReference",
+									"parameters": {
+										"cw_fileName": "@item().destination.fileName"
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"cw_items": {
+				"type": "Array",
+				"defaultValue": [
+					{
+						"source": {
+							"schema": "SalesLT",
+							"table": "Address",
+							"sql": "SELECT AddressID, AddressLine1 RenameAddressLine1 FROM SalesLT.Address"
+						},
+						"destination": {
+							"fileName": "RenameSalesLTAddress.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "SalesLT",
+							"table": "Customer",
+							"sql": "SELECT CustomerID, NameStyle RenameNameStyle FROM SalesLT.Customer"
+						},
+						"destination": {
+							"fileName": "RenameSalesLTCustomer.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "SalesLT",
+							"table": "CustomerAddress",
+							"sql": "SELECT CustomerID, AddressID RenameAddressID FROM SalesLT.CustomerAddress"
+						},
+						"destination": {
+							"fileName": "RenameSalesLTCustomerAddress.txt"
+						}
+					}
+				]
+			},
+			"ADLSGen2FileSystem": {
+				"type": "string",
+				"defaultValue": "sqldbdata"
+			},
+			"ADLSGen2Stor": {
+				"type": "string",
+				"defaultValue": "blogadlsgen2stor"
+			}
+		},
+		"variables": {
+			"tableStructureArray": {
+				"type": "Array"
+			},
+			"tableNameArray": {
+				"type": "Array"
+			},
+			"processMetaDataStor": {
+				"type": "Array"
+			}
+		},
+		"annotations": []
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
