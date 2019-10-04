@@ -1,5 +1,5 @@
 {
-	"name": "BlogSQLDB2ADLSgen2Metadata",
+	"name": "BlogMetadataAzureFunction",
 	"properties": {
 		"activities": [
 			{
