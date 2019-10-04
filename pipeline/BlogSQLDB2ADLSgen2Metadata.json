@@ -119,38 +119,6 @@
 							}
 						},
 						{
-							"name": "Write metadata to folder app",
-							"type": "AzureFunctionActivity",
-							"dependsOn": [
-								{
-									"activity": "CopyTable2ADLSgen2",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"policy": {
-								"timeout": "7.00:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"functionName": "blogmetadataHTTP",
-								"method": "POST",
-								"body": {
-									"value": "@concat('{\"tableStructureArray\":', string(variables('tableStructureArray')), ',\"processMetaDataStor\":', string(variables('processMetaDataStor')), ',\"tableNameArray\":', string(variables('tableNameArray')), ',\"ADLSgen2stor\":\"', string(pipeline().parameters.ADLSGen2Stor), '\",\"filepath\":\"', concat(pipeline().parameters.ADLSGen2FileSystem,'/', item().destination.fileName, '/', utcnow('yyyy'), '/', utcnow('MM'), '/', utcnow('dd')), '\"}')",
-									"type": "Expression"
-								}
-							},
-							"linkedServiceName": {
-								"referenceName": "Blogmetadatafunc",
-								"type": "LinkedServiceReference"
-							}
-						},
-						{
 							"name": "SetTableStructure",
 							"type": "SetVariable",
 							"dependsOn": [
@@ -186,6 +154,38 @@
 								"value": {
 									"value": "@array(concat(item().source.schema, item().source.table))",
 									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "Write metadata to folder app - Web app",
+							"type": "WebActivity",
+							"dependsOn": [
+								{
+									"activity": "CopyTable2ADLSgen2",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"url": "https://blog-metadata-func2.azurewebsites.net/api/blogmetadataHTTP?code=nLU1n48JN2G8D4cx84sMBBUiXIzCkZdHOcK/s82glhtKBMD2T6x8JQ==",
+								"method": "POST",
+								"body": {
+									"value": "@concat('{\"tableStructureArray\":', string(variables('tableStructureArray')), ',\"processMetaDataStor\":', string(variables('processMetaDataStor')), ',\"tableNameArray\":', string(variables('tableNameArray')), ',\"ADLSgen2stor\":\"', string(pipeline().parameters.ADLSGen2Stor), '\",\"filepath\":\"', concat(pipeline().parameters.ADLSGen2FileSystem,'/', item().destination.fileName, '/', utcnow('yyyy'), '/', utcnow('MM'), '/', utcnow('dd')), '\"}')",
+									"type": "Expression"
+								},
+								"authentication": {
+									"type": "MSI",
+									"resource": "https://blog-metadata-func2.azurewebsites.net"
 								}
 							}
 						}
