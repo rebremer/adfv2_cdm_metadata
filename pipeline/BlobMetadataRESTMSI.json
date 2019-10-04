@@ -1,5 +1,5 @@
 {
-	"name": "BlogMetadataAzureFunction",
+	"name": "BlobMetadataRESTMSI",
 	"properties": {
 		"activities": [
 			{
@@ -158,8 +158,8 @@
 							}
 						},
 						{
-							"name": "Write metadata to folder app - Function",
-							"type": "AzureFunctionActivity",
+							"name": "Write metadata to folder app - Web app",
+							"type": "WebActivity",
 							"dependsOn": [
 								{
 									"activity": "CopyTable2ADLSgen2",
@@ -177,13 +177,16 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"functionName": "blogmetadataHTTP ",
+								"url": "https://blog-metadata-func2.azurewebsites.net/api/blogmetadataHTTP?code=nLU1n48JN2G8D4cx84sMBBUiXIzCkZdHOcK/s82glhtKBMD2T6x8JQ==",
 								"method": "POST",
-								"body": "@concat('{\"tableStructureArray\":', string(variables('tableStructureArray')), ',\"processMetaDataStor\":', string(variables('processMetaDataStor')), ',\"tableNameArray\":', string(variables('tableNameArray')), ',\"ADLSgen2stor\":\"', string(pipeline().parameters.ADLSGen2Stor), '\",\"filepath\":\"', concat(pipeline().parameters.ADLSGen2FileSystem,'/', item().destination.fileName, '/', utcnow('yyyy'), '/', utcnow('MM'), '/', utcnow('dd')), '\"}')"
-							},
-							"linkedServiceName": {
-								"referenceName": "Blogmetadatafunc",
-								"type": "LinkedServiceReference"
+								"body": {
+									"value": "@concat('{\"tableStructureArray\":', string(variables('tableStructureArray')), ',\"processMetaDataStor\":', string(variables('processMetaDataStor')), ',\"tableNameArray\":', string(variables('tableNameArray')), ',\"ADLSgen2stor\":\"', string(pipeline().parameters.ADLSGen2Stor), '\",\"filepath\":\"', concat(pipeline().parameters.ADLSGen2FileSystem,'/', item().destination.fileName, '/', utcnow('yyyy'), '/', utcnow('MM'), '/', utcnow('dd')), '\"}')",
+									"type": "Expression"
+								},
+								"authentication": {
+									"type": "MSI",
+									"resource": "https://blog-metadata-func2.azurewebsites.net"
+								}
 							}
 						}
 					]
