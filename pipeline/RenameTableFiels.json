@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "CopySQLtoADLSgen2",
+				"name": "RenameCopySQLtoADLSgen2",
 				"type": "ForEach",
 				"dependsOn": [],
 				"userProperties": [],
@@ -36,7 +36,8 @@
 							],
 							"typeProperties": {
 								"source": {
-									"type": "AzureSqlSource"
+									"type": "AzureSqlSource",
+									"sqlReaderQuery": "@item().source.sql"
 								},
 								"sink": {
 									"type": "DelimitedTextSink",
