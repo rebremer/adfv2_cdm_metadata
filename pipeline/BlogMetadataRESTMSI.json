@@ -183,6 +183,10 @@
 								"body": {
 									"value": "@concat('{\"tableStructureArray\":', string(variables('tableStructureArray')), ',\"processMetaDataStor\":', string(variables('processMetaDataStor')), ',\"tableNameArray\":', string(variables('tableNameArray')), ',\"ADLSgen2stor\":\"', string(pipeline().parameters.ADLSGen2Stor), '\",\"filepath\":\"', concat(pipeline().parameters.ADLSGen2FileSystem,'/', item().destination.fileName, '/', utcnow('yyyy'), '/', utcnow('MM'), '/', utcnow('dd')), '\"}')",
 									"type": "Expression"
+								},
+								"authentication": {
+									"type": "MSI",
+									"resource": "https://blog-metadata-func2.azurewebsites.net"
 								}
 							}
 						}
