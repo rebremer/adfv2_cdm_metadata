@@ -1,0 +1,18 @@
+{
+	"name": "RestResource1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "RestServiceSHIR",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"testrb": {
+				"type": "string",
+				"defaultValue": "4"
+			}
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}

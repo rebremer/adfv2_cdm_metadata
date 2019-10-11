@@ -158,9 +158,8 @@
 							}
 						},
 						{
-							"name": "Write metadata to folder app - Web app",
-							"description": "Refer to https://github.com/rebremer/managed_identity_authentication how to setup AAD authentication from ADFv2 to Azure Function using Managed Identity",
-							"type": "WebActivity",
+							"name": "Copy data1",
+							"type": "Copy",
 							"dependsOn": [
 								{
 									"activity": "CopyTable2ADLSgen2",
@@ -178,27 +177,41 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"url": "https://blog-metadata-func2.azurewebsites.net/api/blogmetadataHTTP?code=nLU1n48JN2G8D4cx84sMBBUiXIzCkZdHOcK/s82glhtKBMD2T6x8JQ==",
-								"connectVia": {
-									"referenceName": "shir",
-									"type": "IntegrationRuntimeReference"
+								"source": {
+									"type": "RestSource",
+									"httpRequestTimeout": "00:01:40",
+									"requestInterval": "00.00:00:00.010",
+									"requestMethod": "POST",
+									"requestBody": "@concat('{\"tableStructureArray\":', string(variables('tableStructureArray')), ',\"processMetaDataStor\":', string(variables('processMetaDataStor')), ',\"tableNameArray\":', string(variables('tableNameArray')), ',\"ADLSgen2stor\":\"', string(pipeline().parameters.ADLSGen2Stor), '\",\"filepath\":\"', concat(pipeline().parameters.ADLSGen2FileSystem,'/', item().destination.fileName, '/', utcnow('yyyy'), '/', utcnow('MM'), '/', utcnow('dd')), '\"}')"
 								},
-								"method": "POST",
-								"body": {
-									"value": "@concat('{\"tableStructureArray\":', string(variables('tableStructureArray')), ',\"processMetaDataStor\":', string(variables('processMetaDataStor')), ',\"tableNameArray\":', string(variables('tableNameArray')), ',\"ADLSgen2stor\":\"', string(pipeline().parameters.ADLSGen2Stor), '\",\"filepath\":\"', concat(pipeline().parameters.ADLSGen2FileSystem,'/', item().destination.fileName, '/', utcnow('yyyy'), '/', utcnow('MM'), '/', utcnow('dd')), '\"}')",
-									"type": "Expression"
-								},
-								"linkedServices": [
-									{
-										"referenceName": "RestServiceSHIR",
-										"type": "LinkedServiceReference"
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
 									}
-								],
-								"authentication": {
-									"type": "MSI",
-									"resource": "https://blog-metadata-func2.azurewebsites.net"
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "RestResource1",
+									"type": "DatasetReference"
 								}
-							}
+							],
+							"outputs": [
+								{
+									"referenceName": "WriteTableDataToADLSgen2",
+									"type": "DatasetReference",
+									"parameters": {
+										"cw_fileName": "testrb.txt"
+									}
+								}
+							]
 						}
 					]
 				}
