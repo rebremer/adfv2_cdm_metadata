@@ -1,0 +1,13 @@
+{
+	"name": "RestServiceAzureIR",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://ms-adf.azure.com/authoring/connection/connection?factory=%2Fsubscriptions%2F513a7987-b0d9-4106-a24d-4b3f49136ea8%2FresourceGroups%2Fblog-metadata-rg%2Fproviders%2FMicrosoft.DataFactory%2Ffactories%2Fblog-metadata-adf",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
