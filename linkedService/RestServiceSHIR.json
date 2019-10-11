@@ -9,6 +9,10 @@
 			"enableServerCertificateValidation": true,
 			"authenticationType": "ManagedServiceIdentity",
 			"aadResourceId": "https://blog-metadata-func2.azurewebsites.net"
+		},
+		"connectVia": {
+			"referenceName": "shir",
+			"type": "IntegrationRuntimeReference"
 		}
 	}
 }
