@@ -1,0 +1,12 @@
+{
+	"name": "RestResourceAzureIR",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "RestServiceAzureIR",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
