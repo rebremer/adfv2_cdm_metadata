@@ -202,11 +202,8 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "RestResource1",
-									"type": "DatasetReference",
-									"parameters": {
-										"testrb": "4"
-									}
+									"referenceName": "RestResourceAzureIR",
+									"type": "DatasetReference"
 								}
 							],
 							"outputs": [
