@@ -5,12 +5,8 @@
 		"annotations": [],
 		"type": "AzureFunction",
 		"typeProperties": {
-			"functionAppUrl": "https://blog-metadata-func2.azurewebsites.net",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJlOTg1ODc2Ny1iMTU2LTQ2YzctYTQ1My1hMjRjNWZkNzg5YTgiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
-		},
-		"connectVia": {
-			"referenceName": "shir",
-			"type": "IntegrationRuntimeReference"
+			"functionAppUrl": "https://blog-metadata-func3.azurewebsites.net",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkJMT0ctTUVUQURBVEEtQURGX2E2Y2FhMDQ0LTUwZTktNDBiZC04YjM2LWUxYjRmMTE0NGE4NSINCn0="
 		}
 	}
 }
