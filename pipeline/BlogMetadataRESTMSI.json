@@ -158,8 +158,8 @@
 							}
 						},
 						{
-							"name": "Copy Metadata",
-							"type": "Copy",
+							"name": "Write metadata to folder app - Web app",
+							"type": "WebActivity",
 							"dependsOn": [
 								{
 									"activity": "CopyTable2ADLSgen2",
@@ -177,44 +177,14 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"source": {
-									"type": "RestSource",
-									"httpRequestTimeout": "00:01:40",
-									"requestInterval": "00.00:00:00.010",
-									"requestMethod": "POST",
-									"requestBody": {
-										"value": "@concat('{\"tableStructureArray\":', string(variables('tableStructureArray')), ',\"processMetaDataStor\":', string(variables('processMetaDataStor')), ',\"tableNameArray\":', string(variables('tableNameArray')), ',\"ADLSgen2stor\":\"', string(pipeline().parameters.ADLSGen2Stor), '\",\"filepath\":\"', concat(pipeline().parameters.ADLSGen2FileSystem,'/', item().destination.fileName, '/', utcnow('yyyy'), '/', utcnow('MM'), '/', utcnow('dd')), '\"}')",
-										"type": "Expression"
-									}
-								},
-								"sink": {
-									"type": "DelimitedTextSink",
-									"storeSettings": {
-										"type": "AzureBlobFSWriteSettings"
-									},
-									"formatSettings": {
-										"type": "DelimitedTextWriteSettings",
-										"quoteAllText": true,
-										"fileExtension": ".txt"
-									}
-								},
-								"enableStaging": false
-							},
-							"inputs": [
-								{
-									"referenceName": "RestResourceAzureSHIR",
-									"type": "DatasetReference"
+								"url": "https://blog-metadata-func3.azurewebsites.net/api/blogmetadataHTTP?code=eX/shvc63eDaWB6MkaZQ12PxTaulakHKk979CdyLIpBNQOl1xQuX8g==",
+								"method": "POST",
+								"body": "@concat('{\"tableStructureArray\":', string(variables('tableStructureArray')), ',\"processMetaDataStor\":', string(variables('processMetaDataStor')), ',\"tableNameArray\":', string(variables('tableNameArray')), ',\"ADLSgen2stor\":\"', string(pipeline().parameters.ADLSGen2Stor), '\",\"filepath\":\"', concat(pipeline().parameters.ADLSGen2FileSystem,'/', item().destination.fileName, '/', utcnow('yyyy'), '/', utcnow('MM'), '/', utcnow('dd')), '\"}')",
+								"authentication": {
+									"type": "MSI",
+									"resource": "https://blog-metadata-func3.azurewebsites.net"
 								}
-							],
-							"outputs": [
-								{
-									"referenceName": "WriteTableDataToADLSgen2",
-									"type": "DatasetReference",
-									"parameters": {
-										"cw_fileName": "@concat('log_',item().destination.fileName)"
-									}
-								}
-							]
+							}
 						}
 					]
 				}

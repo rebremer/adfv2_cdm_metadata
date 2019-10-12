@@ -158,7 +158,7 @@
 							}
 						},
 						{
-							"name": "Copy Metadata",
+							"name": "Write metadata to folder app - Vnet REST API",
 							"type": "Copy",
 							"dependsOn": [
 								{
@@ -208,10 +208,10 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "WriteTableDataToADLSgen2",
+									"referenceName": "WriteRESTMSIVNETLogging",
 									"type": "DatasetReference",
 									"parameters": {
-										"cw_fileName": "@concat('log_',item().destination.fileName)"
+										"cw_fileName": "@item().destination.fileName"
 									}
 								}
 							]
