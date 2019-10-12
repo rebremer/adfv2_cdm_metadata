@@ -1,0 +1,13 @@
+{
+	"name": "RestResourceAzureSHIR",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "RestServiceSHIR",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

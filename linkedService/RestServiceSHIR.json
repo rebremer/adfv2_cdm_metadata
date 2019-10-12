@@ -5,10 +5,14 @@
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "https://blog-metadata-func2.azurewebsites.net/api/blogmetadataHTTP?code=nLU1n48JN2G8D4cx84sMBBUiXIzCkZdHOcK/s82glhtKBMD2T6x8JQ==",
+			"url": "https://blog-metadata-func3.azurewebsites.net/api/blogmetadataHTTP?code=eX/shvc63eDaWB6MkaZQ12PxTaulakHKk979CdyLIpBNQOl1xQuX8g==",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "ManagedServiceIdentity",
-			"aadResourceId": "https://blog-metadata-func2.azurewebsites.net"
+			"aadResourceId": "https://blog-metadata-func3.azurewebsites.net"
+		},
+		"connectVia": {
+			"referenceName": "shir",
+			"type": "IntegrationRuntimeReference"
 		}
 	}
 }

@@ -6,7 +6,7 @@
 		"type": "AzureFunction",
 		"typeProperties": {
 			"functionAppUrl": "https://blog-metadata-func2.azurewebsites.net",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI4MWMxMTUwOS1jYjg3LTQyZWQtYTlhMS1iMmI1NjQxZDM2NTgiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJlOTg1ODc2Ny1iMTU2LTQ2YzctYTQ1My1hMjRjNWZkNzg5YTgiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
 		},
 		"connectVia": {
 			"referenceName": "shir",

@@ -158,7 +158,7 @@
 							}
 						},
 						{
-							"name": "Copy data1",
+							"name": "Copy Metadata",
 							"type": "Copy",
 							"dependsOn": [
 								{
@@ -202,7 +202,7 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "RestResourceAzureIR",
+									"referenceName": "RestResourceAzureSHIR",
 									"type": "DatasetReference"
 								}
 							],
@@ -211,7 +211,7 @@
 									"referenceName": "WriteTableDataToADLSgen2",
 									"type": "DatasetReference",
 									"parameters": {
-										"cw_fileName": "testrb.txt"
+										"cw_fileName": "@concat('log_',item().destination.fileName)"
 									}
 								}
 							]
