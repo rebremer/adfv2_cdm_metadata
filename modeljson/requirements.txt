@@ -1,5 +1,5 @@
 azure-functions
-azure-storage-blob
+azure-storage-blob==2.0.1
 adal
 msrestazure
 jsonschema
