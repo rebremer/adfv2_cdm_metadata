@@ -6,6 +6,10 @@
 		"type": "AzureBlobFS",
 		"typeProperties": {
 			"url": "https://blogadlsgen2stor.dfs.core.windows.net"
+		},
+		"connectVia": {
+			"referenceName": "shir",
+			"type": "IntegrationRuntimeReference"
 		}
 	}
 }
