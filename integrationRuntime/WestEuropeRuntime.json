@@ -1,0 +1,17 @@
+{
+	"name": "WestEuropeRuntime",
+	"properties": {
+		"type": "Managed",
+		"description": "WestEuropeRuntime",
+		"typeProperties": {
+			"computeProperties": {
+				"location": "West Europe",
+				"dataFlowProperties": {
+					"computeType": "General",
+					"coreCount": 8,
+					"timeToLive": 0
+				}
+			}
+		}
+	}
+}
