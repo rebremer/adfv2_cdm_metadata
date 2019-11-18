@@ -188,14 +188,13 @@
 									}
 								},
 								"sink": {
-									"type": "DelimitedTextSink",
+									"type": "JsonSink",
 									"storeSettings": {
 										"type": "AzureBlobFSWriteSettings"
 									},
 									"formatSettings": {
-										"type": "DelimitedTextWriteSettings",
-										"quoteAllText": true,
-										"fileExtension": ".txt"
+										"type": "JsonWriteSettings",
+										"quoteAllText": true
 									}
 								},
 								"enableStaging": false
@@ -208,11 +207,8 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "WriteRESTMSIVNETLogging",
-									"type": "DatasetReference",
-									"parameters": {
-										"cw_fileName": "@item().destination.fileName"
-									}
+									"referenceName": "WriteRESTMSIVNETLoggingJSON",
+									"type": "DatasetReference"
 								}
 							]
 						}
