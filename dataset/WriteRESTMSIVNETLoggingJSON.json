@@ -15,8 +15,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "@dataset().cw_fileName",
-				"folderPath": "dummy_log",
+				"fileName": "model_adfv2directly.json",
+				"folderPath": "@concat(dataset().cw_fileName, '/', utcnow('yyyy'), '/', utcnow('MM'), '/', utcnow('dd'))",
 				"fileSystem": "sqldbdata"
 			}
 		}
