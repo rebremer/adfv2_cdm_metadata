@@ -208,7 +208,13 @@
 							"outputs": [
 								{
 									"referenceName": "WriteRESTMSIVNETLoggingJSON",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"cw_fileName": {
+											"value": "@item().cw_fileName",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						}
