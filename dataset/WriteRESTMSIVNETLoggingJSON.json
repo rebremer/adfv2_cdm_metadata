@@ -5,6 +5,11 @@
 			"referenceName": "Blogadlsgen2stor",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"cw_fileName": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "Json",
 		"typeProperties": {
