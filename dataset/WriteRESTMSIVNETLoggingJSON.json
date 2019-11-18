@@ -1,0 +1,19 @@
+{
+	"name": "WriteRESTMSIVNETLoggingJSON",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Blogadlsgen2stor",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "@dataset().cw_fileName",
+				"folderPath": "dummy_log",
+				"fileSystem": "sqldbdata"
+			}
+		}
+	}
+}
