@@ -7,7 +7,7 @@
 			"url": "https://blog-metadata-func3.azurewebsites.net/api/blogmetadataHTTP?code=eX/shvc63eDaWB6MkaZQ12PxTaulakHKk979CdyLIpBNQOl1xQuX8g==",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "ManagedServiceIdentity",
-			"aadResourceId": "https://blog-metaDATA-func3.azurewebsites.net"
+			"aadResourceId": "https://blog-metadata-func3.azurewebsites.net"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/linkedservices"
