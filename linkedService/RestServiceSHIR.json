@@ -4,10 +4,10 @@
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "https://blog-metadata-func3.azurewebsites.net/api/blogmetadataHTTP?code=eX/shvc63eDaWB6MkaZQ12PxTaulakHKk979CdyLIpBNQOl1xQuX8g==",
+			"url": "https://authtest2-fun.azurewebsites.net/api/blogmetadataHTTP?code=4GmCu14B5rlgVeK1EPdH7bikz/7lSYbvZQBzUVGmqp/uUV3fCZMtQQ==",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "ManagedServiceIdentity",
-			"aadResourceId": "https://blog-METAdata-func3.azurewebsites.net"
+			"aadResourceId": "https://authtest2-fun.azurewebsites.net"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/linkedservices"
