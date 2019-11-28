@@ -7,7 +7,7 @@
 			"url": "https://authtest3-fun.azurewebsites.net/api/blogmetadataHTTP?code=1nW2rKKBf8EroYlOpe47CgNS0BUOkdE8WdPiGL8N0ahOy9abZDhlOw==",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "ManagedServiceIdentity",
-			"aadResourceId": "https://authtest3-fun.azurewebsites.net"
+			"aadResourceId": "https://testrb.net"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/linkedservices"
