@@ -73,12 +73,8 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "GetTableDataFromSQLDB",
-									"type": "DatasetReference",
-									"parameters": {
-										"cw_schema": "@item().source.schema",
-										"cw_table": "@item().source.table"
-									}
+									"referenceName": "BlogADFvsecSQL",
+									"type": "DatasetReference"
 								}
 							],
 							"outputs": [
