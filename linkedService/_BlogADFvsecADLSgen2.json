@@ -1,0 +1,14 @@
+{
+	"name": "_BlogADFvsecADLSgen2",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://blogadfv2secstor.dfs.core.windows.net"
+		},
+		"connectVia": {
+			"referenceName": "blog-adfv2sec-shir",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
