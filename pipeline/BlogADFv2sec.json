@@ -79,11 +79,8 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "WriteTableDataToADLSgen2",
-									"type": "DatasetReference",
-									"parameters": {
-										"cw_fileName": "@item().destination.fileName"
-									}
+									"referenceName": "BlogADFvsecADLSgen2",
+									"type": "DatasetReference"
 								}
 							]
 						},
