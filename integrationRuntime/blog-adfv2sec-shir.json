@@ -1,0 +1,7 @@
+{
+	"name": "blog-adfv2sec-shir",
+	"properties": {
+		"type": "SelfHosted",
+		"description": "Self-hosted Integration runtime created using ARM template"
+	}
+}
