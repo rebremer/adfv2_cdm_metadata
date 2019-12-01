@@ -226,7 +226,11 @@
 				"typeProperties": {
 					"variableName": "processMetaDataStor",
 					"value": [
-						"[{\"firstRow\": {\"retentionPeriod\": 62,\"sourceSystem\": \"bremerov\", dataowner\": \"rebremer\", \"privacyLevel\": \"10\", \"generationData\": \"2019-09-09 16:56:00Z\"}}]"
+						"{\"firstRow\": {\"retentionPeriod\": 62",
+						"sourceSystem\": \"bremerov",
+						" dataowner\": \"rebremer\"",
+						" \"privacyLevel\": \"10\"",
+						" \"generationData\": \"2019-09-09 16:56:00Z\"}}"
 					]
 				}
 			}
