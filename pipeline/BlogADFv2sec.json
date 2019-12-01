@@ -74,13 +74,20 @@
 							"inputs": [
 								{
 									"referenceName": "BlogADFvsecSQL",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"cw_schema": "@item().source.schema",
+										"cw_table": "@item().source.table"
+									}
 								}
 							],
 							"outputs": [
 								{
 									"referenceName": "BlogADFvsecADLSgen2",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"cw_fileName": "@item().destination.fileName"
+									}
 								}
 							]
 						},
@@ -99,7 +106,11 @@
 							"typeProperties": {
 								"dataset": {
 									"referenceName": "BlogADFvsecSQL",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"cw_schema": "@item().source.schema",
+										"cw_table": "@item().source.table"
+									}
 								},
 								"fieldList": [
 									"structure",
@@ -197,7 +208,10 @@
 							"outputs": [
 								{
 									"referenceName": "BlogADFvsecADLSgen2JSON",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"cw_fileName": "@item().destination.fileName"
+									}
 								}
 							]
 						}
