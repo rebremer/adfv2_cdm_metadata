@@ -1,0 +1,13 @@
+{
+	"name": "BlogADFvsecREST",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "_BlogADFvsecAzureFunction",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
