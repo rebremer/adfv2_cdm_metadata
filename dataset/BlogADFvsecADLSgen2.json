@@ -1,0 +1,36 @@
+{
+	"name": "BlogADFvsecADLSgen2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "_BlogADFvsecADLSgen2",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"cw_fileName": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().cw_fileName",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@concat(dataset().cw_fileName, '/', utcnow('yyyy'), '/', utcnow('MM'), '/', utcnow('dd'))",
+					"type": "Expression"
+				},
+				"fileSystem": "sqldbdata"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": false,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
