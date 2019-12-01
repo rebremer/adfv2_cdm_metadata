@@ -2,7 +2,7 @@
 	"name": "BlogADFvsecADLSgen2JSON",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "Blogadlsgen2stor",
+			"referenceName": "_BlogADFvsecADLSgen2",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
