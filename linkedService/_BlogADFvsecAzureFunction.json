@@ -1,0 +1,17 @@
+{
+	"name": "_BlogADFvsecAzureFunction",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://blog-adfv2sec-fun.azurewebsites.net/api/blogmetadataHTTP?code=qIxoZazx7fmvjHGWmANieMyra3dmePt89SnDQHlSVWmMx2ahBZ3v3A==",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "ManagedServiceIdentity",
+			"aadResourceId": "https://blog-adfv2sec-fun.azurewebsites.net"
+		},
+		"connectVia": {
+			"referenceName": "blog-adfv2sec-shir",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
