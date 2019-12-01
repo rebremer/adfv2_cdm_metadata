@@ -196,14 +196,8 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "WriteRESTMSIVNETLoggingJSON",
-									"type": "DatasetReference",
-									"parameters": {
-										"cw_fileName": {
-											"value": "@item().destination.fileName",
-											"type": "Expression"
-										}
-									}
+									"referenceName": "BlogADFvsecADLSgen2JSON",
+									"type": "DatasetReference"
 								}
 							]
 						}
