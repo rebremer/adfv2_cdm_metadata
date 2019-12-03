@@ -1,0 +1,5 @@
+azure-functions
+adal
+msrestazure
+pyodbc
+azure-keyvault==1.1.0
