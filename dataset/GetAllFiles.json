@@ -10,7 +10,6 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "model.json",
 				"folderPath": "*/*/*/*",
 				"fileSystem": "sqldbdata"
 			}
