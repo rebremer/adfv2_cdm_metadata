@@ -11,7 +11,7 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "model.json",
-				"folderPath": "@concat(item().folder, '/', utcnow('yyyy'), '/', utcnow('MM'), '/', utcnow('dd'))",
+				"folderPath": "@concat(item().name, '/', utcnow('yyyy'), '/', utcnow('MM'), '/', utcnow('dd'))",
 				"fileSystem": "sqldbdata"
 			}
 		}
