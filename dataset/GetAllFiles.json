@@ -1,0 +1,19 @@
+{
+	"name": "GetAllFiles",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Blogadlsgen2stor",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "model.json",
+				"folderPath": "*/*/*/*",
+				"fileSystem": "sqldbdata"
+			}
+		}
+	}
+}
