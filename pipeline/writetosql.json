@@ -123,7 +123,7 @@
 							"typeProperties": {
 								"source": {
 									"type": "AzureSqlSource",
-									"sqlReaderQuery": "@concat('SELECT DISTINCT 1 FROM INFORMATION_SCHEMA.columns WHERE table_name =',  activity('parse modeljson to sql query').output.results[0].name)",
+									"sqlReaderQuery": "@concat('SELECT DISTINCT 1 FROM INFORMATION_SCHEMA.columns WHERE table_name =',  ''',activity('parse modeljson to sql query').output.results[0].name, ''')",
 									"queryTimeout": "02:00:00"
 								},
 								"dataset": {
