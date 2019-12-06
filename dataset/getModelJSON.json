@@ -11,7 +11,10 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "model_adfv2directly.json",
-				"folderPath": "@concat(item().name, '/', utcnow('yyyy'), '/', utcnow('MM'), '/', utcnow('dd'))",
+				"folderPath": {
+					"value": "@concat(item().name, '/', pipeline().parameters.year, '/', pipeline().parameters.month, '/', pipeline().parameters.day)",
+					"type": "Expression"
+				},
 				"fileSystem": "sqldbdata"
 			}
 		}
