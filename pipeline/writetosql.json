@@ -127,12 +127,8 @@
 									"queryTimeout": "02:00:00"
 								},
 								"dataset": {
-									"referenceName": "BlogADFvsecSQL",
-									"type": "DatasetReference",
-									"parameters": {
-										"cw_schema": "DummyTable",
-										"cw_table": []
-									}
+									"referenceName": "GetTableDataFromSQLDB",
+									"type": "DatasetReference"
 								}
 							}
 						},
@@ -156,7 +152,6 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"storedProcedureName": "dbo.ExecuteQuery",
 								"storedProcedureParameters": {
 									"query": {
 										"value": {
@@ -168,7 +163,7 @@
 								}
 							},
 							"linkedServiceName": {
-								"referenceName": "_BlogADFvsecSQL",
+								"referenceName": "AzureSqlDatabase1",
 								"type": "LinkedServiceReference"
 							}
 						}
