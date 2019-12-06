@@ -133,7 +133,8 @@
 										"cw_schema": "DummySchema",
 										"cw_table": "DummyTable"
 									}
-								}
+								},
+								"firstRowOnly": false
 							}
 						},
 						{
