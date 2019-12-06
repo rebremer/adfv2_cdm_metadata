@@ -72,6 +72,34 @@
 									"type": "DatasetReference"
 								}
 							}
+						},
+						{
+							"name": "parse model.json to sql query",
+							"type": "WebActivity",
+							"dependsOn": [
+								{
+									"activity": "Lookup1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"url": "https://blog-modeljson2sql-fun.azurewebsites.net/api/HttpTrigger?code=Tm/mdDMO3LHr291krJCSg7z4CnsIOEnpxNLjaxxJ7BdfwTL8VbVVsQ==",
+								"method": "POST",
+								"body": {
+									"value": "@activity('Lookup1').output",
+									"type": "Expression"
+								}
+							}
 						}
 					]
 				}
