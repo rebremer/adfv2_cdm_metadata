@@ -128,7 +128,11 @@
 								},
 								"dataset": {
 									"referenceName": "GetTableDataFromSQLDB",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"cw_schema": "dummytable",
+										"cw_table": []
+									}
 								}
 							}
 						},
@@ -152,6 +156,7 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
+								"storedProcedureName": "dbo.ExecuteQuery",
 								"storedProcedureParameters": {
 									"query": {
 										"value": {
