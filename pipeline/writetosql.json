@@ -100,6 +100,41 @@
 									"type": "Expression"
 								}
 							}
+						},
+						{
+							"name": "Lookup2",
+							"type": "Lookup",
+							"dependsOn": [
+								{
+									"activity": "parse modeljson to sql query",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"sqlReaderQuery": "IF NOT EXISTS (SELECT * FROM sysobjects WHERE id = object_id(N'[dbo].[ExecuteQuery]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1) BEGIN EXEC ('CREATE PROC [dbo].[ExecuteQuery] @query [nvarchar](max) AS EXEC (@query)'); SELECT 1; END ELSE SELECT 2; IF NOT EXISTS (SELECT * FROM sysobjects WHERE id = object_id(N'[dbo].[ADFCDSACopyTracker]') AND OBJECTPROPERTY(id, N'IsTable') = 1) BEGIN EXEC ('CREATE TABLE  [dbo].[ADFCDSACopyTracker] ( [Id] [int] IDENTITY(1,1) NOT NULL, [EntityName] [nvarchar](200) NULL, [PartionLocation] [nvarchar](500) NULL, [RunId] [nvarchar](200) NULL, [RefreshTime] [nvarchar](200) NULL, [ModifiedTime] [nvarchar](200) NULL)'); SELECT 3; END ELSE SELECT 4;",
+									"queryTimeout": "02:00:00"
+								},
+								"dataset": {
+									"referenceName": "BlogADFvsecSQL",
+									"type": "DatasetReference",
+									"parameters": {
+										"cw_schema": "DummyTable",
+										"cw_table": []
+									}
+								}
+							}
 						}
 					]
 				}
