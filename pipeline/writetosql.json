@@ -152,7 +152,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"expression": {
-									"value": "@equals(activity('Find Table').output,1)",
+									"value": "@equals(activity('Find Table').output.count,1)",
 									"type": "Expression"
 								},
 								"ifFalseActivities": [
