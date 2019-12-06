@@ -108,15 +108,15 @@
 		"parameters": {
 			"year": {
 				"type": "string",
-				"defaultValue": "@utcnow('yyyy')"
+				"defaultValue": "utcnow('yyyy')"
 			},
 			"month": {
 				"type": "string",
-				"defaultValue": "@utcnow('MM')"
+				"defaultValue": "utcnow('MM')"
 			},
 			"day": {
 				"type": "string",
-				"defaultValue": "@utcnow('dd')"
+				"defaultValue": "utcnow('dd')"
 			}
 		},
 		"annotations": []
