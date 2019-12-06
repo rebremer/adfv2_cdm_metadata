@@ -74,7 +74,7 @@
 							}
 						},
 						{
-							"name": "parse model.json to sql query",
+							"name": "parse modeljson to sql query",
 							"type": "WebActivity",
 							"dependsOn": [
 								{
