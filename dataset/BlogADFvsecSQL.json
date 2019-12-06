@@ -2,7 +2,7 @@
 	"name": "BlogADFvsecSQL",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "_BlogADFvsecSQL",
+			"referenceName": "AzureSqlDatabase1",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
