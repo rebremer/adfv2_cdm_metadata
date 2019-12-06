@@ -102,7 +102,7 @@
 							}
 						},
 						{
-							"name": "Lookup2",
+							"name": "prepDW",
 							"type": "Lookup",
 							"dependsOn": [
 								{
@@ -134,6 +134,42 @@
 										"cw_table": []
 									}
 								}
+							}
+						},
+						{
+							"name": "create table",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [
+								{
+									"activity": "prepDW",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": "dbo.ExecuteQuery",
+								"storedProcedureParameters": {
+									"query": {
+										"value": {
+											"value": "@activity('parse modeljson to sql query').output.query",
+											"type": "Expression"
+										},
+										"type": "String"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "_BlogADFvsecSQL",
+								"type": "LinkedServiceReference"
 							}
 						}
 					]
