@@ -130,8 +130,8 @@
 									"referenceName": "GetTableDataFromSQLDB",
 									"type": "DatasetReference",
 									"parameters": {
-										"cw_schema": "dummytable",
-										"cw_table": []
+										"cw_schema": "DummyTable",
+										"cw_table": "test"
 									}
 								}
 							}
