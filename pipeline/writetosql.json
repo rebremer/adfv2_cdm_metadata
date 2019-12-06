@@ -150,6 +150,10 @@
 							],
 							"userProperties": [],
 							"typeProperties": {
+								"expression": {
+									"value": "@equals(activity('Find Table').output,1)",
+									"type": "Expression"
+								},
 								"ifFalseActivities": [
 									{
 										"name": "prepDW",
