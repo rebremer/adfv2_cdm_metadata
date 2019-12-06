@@ -102,7 +102,7 @@
 							}
 						},
 						{
-							"name": "prepDW",
+							"name": "Find Table",
 							"type": "Lookup",
 							"dependsOn": [
 								{
@@ -123,53 +123,99 @@
 							"typeProperties": {
 								"source": {
 									"type": "AzureSqlSource",
-									"sqlReaderQuery": "IF NOT EXISTS (SELECT * FROM sysobjects WHERE id = object_id(N'[dbo].[ExecuteQuery]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1) BEGIN EXEC ('CREATE PROC [dbo].[ExecuteQuery] @query [nvarchar](max) AS EXEC (@query)'); SELECT 1; END ELSE SELECT 2; IF NOT EXISTS (SELECT * FROM sysobjects WHERE id = object_id(N'[dbo].[ADFCDSACopyTracker]') AND OBJECTPROPERTY(id, N'IsTable') = 1) BEGIN EXEC ('CREATE TABLE  [dbo].[ADFCDSACopyTracker] ( [Id] [int] IDENTITY(1,1) NOT NULL, [EntityName] [nvarchar](200) NULL, [PartionLocation] [nvarchar](500) NULL, [RunId] [nvarchar](200) NULL, [RefreshTime] [nvarchar](200) NULL, [ModifiedTime] [nvarchar](200) NULL)'); SELECT 3; END ELSE SELECT 4;",
+									"sqlReaderQuery": "@concat('SELECT DISTINCT 1 FROM INFORMATION_SCHEMA.columns WHERE table_name =\"',  @activity('parse modeljson to sql query').output.results[0].name, '\"')",
 									"queryTimeout": "02:00:00"
 								},
 								"dataset": {
 									"referenceName": "BlogADFvsecSQL",
 									"type": "DatasetReference",
 									"parameters": {
-										"cw_schema": "dummyschema",
-										"cw_table": "dummytable"
+										"cw_schema": "DummySchema",
+										"cw_table": "DummyTable"
 									}
 								}
 							}
 						},
 						{
-							"name": "create table",
-							"type": "SqlServerStoredProcedure",
+							"name": "Check Table",
+							"description": "If table is not found, create it, else check if columns are missing",
+							"type": "IfCondition",
 							"dependsOn": [
 								{
-									"activity": "prepDW",
+									"activity": "Find Table",
 									"dependencyConditions": [
 										"Succeeded"
 									]
 								}
 							],
-							"policy": {
-								"timeout": "7.00:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
 							"userProperties": [],
 							"typeProperties": {
-								"storedProcedureName": "dbo.ExecuteQuery",
-								"storedProcedureParameters": {
-									"query": {
-										"value": {
-											"value": "@activity('parse modeljson to sql query').output.results[0].query",
-											"type": "Expression"
+								"ifFalseActivities": [
+									{
+										"name": "prepDW",
+										"type": "Lookup",
+										"dependsOn": [],
+										"policy": {
+											"timeout": "7.00:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
 										},
-										"type": "String"
+										"userProperties": [],
+										"typeProperties": {
+											"source": {
+												"type": "AzureSqlSource",
+												"sqlReaderQuery": "IF NOT EXISTS (SELECT * FROM sysobjects WHERE id = object_id(N'[dbo].[ExecuteQuery]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1) BEGIN EXEC ('CREATE PROC [dbo].[ExecuteQuery] @query [nvarchar](max) AS EXEC (@query)'); SELECT 1; END ELSE SELECT 2; IF NOT EXISTS (SELECT * FROM sysobjects WHERE id = object_id(N'[dbo].[ADFCDSACopyTracker]') AND OBJECTPROPERTY(id, N'IsTable') = 1) BEGIN EXEC ('CREATE TABLE  [dbo].[ADFCDSACopyTracker] ( [Id] [int] IDENTITY(1,1) NOT NULL, [EntityName] [nvarchar](200) NULL, [PartionLocation] [nvarchar](500) NULL, [RunId] [nvarchar](200) NULL, [RefreshTime] [nvarchar](200) NULL, [ModifiedTime] [nvarchar](200) NULL)'); SELECT 3; END ELSE SELECT 4;",
+												"queryTimeout": "02:00:00"
+											},
+											"dataset": {
+												"referenceName": "BlogADFvsecSQL",
+												"type": "DatasetReference",
+												"parameters": {
+													"cw_schema": "dummyschema",
+													"cw_table": "dummytable"
+												}
+											}
+										}
+									},
+									{
+										"name": "create table_copy1",
+										"type": "SqlServerStoredProcedure",
+										"dependsOn": [
+											{
+												"activity": "prepDW",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"policy": {
+											"timeout": "7.00:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"storedProcedureName": "dbo.ExecuteQuery",
+											"storedProcedureParameters": {
+												"query": {
+													"value": {
+														"value": "@activity('parse modeljson to sql query').output.results[0].query",
+														"type": "Expression"
+													},
+													"type": "String"
+												}
+											}
+										},
+										"linkedServiceName": {
+											"referenceName": "AzureSqlDatabase1",
+											"type": "LinkedServiceReference"
+										}
 									}
-								}
-							},
-							"linkedServiceName": {
-								"referenceName": "AzureSqlDatabase1",
-								"type": "LinkedServiceReference"
+								]
 							}
 						}
 					]
