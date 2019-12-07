@@ -74,7 +74,7 @@
 							}
 						},
 						{
-							"name": "parse modeljson to sql query",
+							"name": "parse",
 							"type": "WebActivity",
 							"dependsOn": [
 								{
@@ -106,7 +106,7 @@
 							"type": "Lookup",
 							"dependsOn": [
 								{
-									"activity": "parse modeljson to sql query",
+									"activity": "parse",
 									"dependencyConditions": [
 										"Succeeded"
 									]
