@@ -133,7 +133,7 @@
 							"typeProperties": {
 								"variableName": "tableStructureArray",
 								"value": [
-									"@activity('GetTableStructure').output.structure"
+									"@activity('GetTableStructure').output"
 								]
 							}
 						},
