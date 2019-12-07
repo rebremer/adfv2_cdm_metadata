@@ -262,7 +262,7 @@
 									"parameters": {
 										"File": "@activity('Lookup1').output.firstRow.entities[0].name",
 										"Schema": {
-											"value": "@activity('parse modeljson to sql query').output.tableStructure",
+											"value": "@activity('parse').output.tableStructure",
 											"type": "Expression"
 										}
 									}
@@ -273,8 +273,8 @@
 									"referenceName": "InsertcvstoSQLDB",
 									"type": "DatasetReference",
 									"parameters": {
-										"TableName": "@activity('parse modeljson to sql query').output.tableName",
-										"TableSchema": "@activity('parse modeljson to sql query').output.tableStructure"
+										"TableName": "@activity('parse').output.tableName",
+										"TableSchema": "@activity('parse').output.tableStructure"
 									}
 								}
 							]
