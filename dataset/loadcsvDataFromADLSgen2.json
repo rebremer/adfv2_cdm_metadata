@@ -11,6 +11,12 @@
 				"defaultValue": [
 					1
 				]
+			},
+			"Folder": {
+				"type": "string"
+			},
+			"File": {
+				"type": "string"
 			}
 		},
 		"annotations": [],
