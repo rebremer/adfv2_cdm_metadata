@@ -25,13 +25,13 @@
 							"type": "Copy",
 							"dependsOn": [
 								{
-									"activity": "SetTableStructure",
+									"activity": "SetTableName",
 									"dependencyConditions": [
 										"Succeeded"
 									]
 								},
 								{
-									"activity": "SetTableName",
+									"activity": "GetTableStructure",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -119,25 +119,6 @@
 							}
 						},
 						{
-							"name": "SetTableStructure",
-							"type": "SetVariable",
-							"dependsOn": [
-								{
-									"activity": "GetTableStructure",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"variableName": "tableStructureArray",
-								"value": [
-									"@activity('GetTableStructure').output"
-								]
-							}
-						},
-						{
 							"name": "SetTableName",
 							"type": "SetVariable",
 							"dependsOn": [
@@ -183,7 +164,7 @@
 									"requestInterval": "00.00:00:00.010",
 									"requestMethod": "POST",
 									"requestBody": {
-										"value": "@concat('{\"tableStructureArray\":', string(variables('tableStructureArray')), ',\"processMetaDataStor\":', string(variables('processMetaDataStor')), ',\"tableNameArray\":', string(variables('tableNameArray')), ',\"ADLSgen2stor\":\"', string(pipeline().parameters.ADLSGen2Stor), '\",\"filepath\":\"', concat(pipeline().parameters.ADLSGen2FileSystem,'/', item().destination.fileName, '/', utcnow('yyyy'), '/', utcnow('MM'), '/', utcnow('dd')), '\"}')",
+										"value": "@{concat('{\"tableStructureArray\":', string(activity('GetTableStructure').output), ',\"processMetaDataStor\":', string(variables('processMetaDataStor')), ',\"tableNameArray\":', string(variables('tableNameArray')), ',\"ADLSgen2stor\":\"', string(pipeline().parameters.ADLSGen2Stor), '\",\"filepath\":\"', concat(pipeline().parameters.ADLSGen2FileSystem,'/', item().destination.fileName, '/', utcnow('yyyy'), '/', utcnow('MM'), '/', utcnow('dd')), '\"}')}",
 										"type": "Expression"
 									}
 								},
