@@ -250,6 +250,9 @@
 									"type": "AzureBlobFSSource",
 									"recursive": true
 								},
+								"sink": {
+									"type": "AzureSqlSink"
+								},
 								"enableStaging": false
 							},
 							"inputs": [
@@ -262,6 +265,16 @@
 											"value": "@activity('parse modeljson to sql query').output.tableStructure",
 											"type": "Expression"
 										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "InsertcvstoSQLDB",
+									"type": "DatasetReference",
+									"parameters": {
+										"TableName": "@activity('parse modeljson to sql query').output.tableName",
+										"TableSchema": "@activity('parse modeljson to sql query').output.tableStructure"
 									}
 								}
 							]
