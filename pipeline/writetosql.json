@@ -124,7 +124,7 @@
 								"source": {
 									"type": "AzureSqlSource",
 									"sqlReaderQuery": {
-										"value": "@concat('SELECT DISTINCT 1 FROM INFORMATION_SCHEMA.columns WHERE table_name = ''' ,activity('parse modeljson to sql query').output.results[0].name, '''')",
+										"value": "@concat('SELECT DISTINCT 1 FROM INFORMATION_SCHEMA.columns WHERE table_name = ''' ,activity('parse').output.results[0].name, '''')",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00"
@@ -211,7 +211,7 @@
 											"storedProcedureParameters": {
 												"query": {
 													"value": {
-														"value": "@activity('parse modeljson to sql query').output.results[0].query",
+														"value": "@activity('parse').output.results[0].query",
 														"type": "Expression"
 													},
 													"type": "String"
