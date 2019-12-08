@@ -178,12 +178,8 @@
 												"queryTimeout": "02:00:00"
 											},
 											"dataset": {
-												"referenceName": "BlogADFvsecSQL",
-												"type": "DatasetReference",
-												"parameters": {
-													"cw_schema": "dummyschema",
-													"cw_table": "dummytable"
-												}
+												"referenceName": "InsertcvstoSQLDB",
+												"type": "DatasetReference"
 											}
 										}
 									},
