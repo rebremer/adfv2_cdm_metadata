@@ -273,8 +273,8 @@
 									"referenceName": "InsertcvstoSQLDB",
 									"type": "DatasetReference",
 									"parameters": {
-										"TableName": "@activity('parse').output.tableName",
-										"TableSchema": "@activity('parse').output.tableStructure"
+										"TableName": "@activity('parse').output.results[0].tableName",
+										"TableSchema": "@activity('parse').output.results[0].tableStructure"
 									}
 								}
 							]
