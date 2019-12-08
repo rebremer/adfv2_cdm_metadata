@@ -260,7 +260,7 @@
 									"referenceName": "LoadcsvfromADLSgen2",
 									"type": "DatasetReference",
 									"parameters": {
-										"File": "@activity('Lookup1').output.firstRow.entities[0].name",
+										"File": "@item().name",
 										"Schema": {
 											"value": "@activity('parse').output.results[0].tableStructure",
 											"type": "Expression"
