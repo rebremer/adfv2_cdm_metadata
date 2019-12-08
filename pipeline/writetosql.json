@@ -262,7 +262,7 @@
 									"parameters": {
 										"File": "@activity('Lookup1').output.firstRow.entities[0].name",
 										"Schema": {
-											"value": "@activity('parse').output.tableStructure",
+											"value": "@activity('parse').output.results[0].tableStructure",
 											"type": "Expression"
 										}
 									}
