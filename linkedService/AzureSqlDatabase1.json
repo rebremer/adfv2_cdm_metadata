@@ -5,8 +5,8 @@
 		"annotations": [],
 		"type": "AzureSqlDatabase",
 		"typeProperties": {
-			"connectionString": "integrated security=False;encrypt=True;connection timeout=30;data source=test-edlprod1-dbs.database.windows.net;initial catalog=blog-adfv2sec-sqldb;user id=bremerov",
-			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkJMT0ctTUVUQURBVEEtQURGX2YzNDgzNjhkLWFmNzMtNDhmZi05OGJlLTM4NjZhNzQ2ZWI0NyINCn0="
+			"connectionString": "integrated security=False;encrypt=True;connection timeout=30;data source=test-edlprod1-dbs.database.windows.net;initial catalog=test-edlprod1-db2;user id=bremerov",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkJMT0ctTUVUQURBVEEtQURGX2E5MTEyMmU2LTBjZTEtNDdjMC04NjcyLTRhY2Q0M2QyMDFkMSINCn0="
 		}
 	}
 }
