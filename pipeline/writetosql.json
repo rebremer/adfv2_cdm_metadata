@@ -179,7 +179,11 @@
 											},
 											"dataset": {
 												"referenceName": "InsertcvstoSQLDB",
-												"type": "DatasetReference"
+												"type": "DatasetReference",
+												"parameters": {
+													"TableName": "DummyTable",
+													"TableSchema": "DummySchema"
+												}
 											}
 										}
 									},
