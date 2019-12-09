@@ -94,7 +94,7 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "@concat('SELECT DISTINCT 1 FROM INFORMATION_SCHEMA.columns WHERE table_name = ''' ,activity('ParseModeljson').output.results[0].name, '''')",
+							"value": "@concat('SELECT DISTINCT 1 FROM INFORMATION_SCHEMA.columns WHERE table_name = ''' ,pipeline().parameters.table, '''')",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00"
@@ -130,7 +130,7 @@
 					},
 					"ifFalseActivities": [
 						{
-							"name": "CreateTable_copy1",
+							"name": "CreateTable",
 							"type": "SqlServerStoredProcedure",
 							"dependsOn": [],
 							"policy": {
@@ -253,6 +253,9 @@
 		],
 		"parameters": {
 			"table": {
+				"type": "string"
+			},
+			"query": {
 				"type": "string"
 			}
 		},
