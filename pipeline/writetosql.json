@@ -211,7 +211,7 @@
 											"storedProcedureParameters": {
 												"query": {
 													"value": {
-														"value": "@activity('parse').output.results[0].query",
+														"value": "@activity('ParseModeljson').output.results[0].query",
 														"type": "Expression"
 													},
 													"type": "String"
