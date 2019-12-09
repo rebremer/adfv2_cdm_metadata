@@ -131,6 +131,7 @@
 										"name": "CopyData",
 										"type": "ExecutePipeline",
 										"dependsOn": [],
+										"userProperties": [],
 										"typeProperties": {
 											"pipeline": {
 												"referenceName": "BlogModeljson2SQLDWcopy",
