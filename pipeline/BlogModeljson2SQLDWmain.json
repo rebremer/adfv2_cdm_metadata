@@ -233,7 +233,7 @@
 			},
 			"day": {
 				"type": "string",
-				"defaultValue": "6"
+				"defaultValue": "9"
 			}
 		},
 		"annotations": []
