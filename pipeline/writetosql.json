@@ -141,7 +141,7 @@
 							}
 						},
 						{
-							"name": "CheckUpdate Table",
+							"name": "CheckUpdateTable",
 							"description": "If table is not found, create it, else check if columns are missing",
 							"type": "IfCondition",
 							"dependsOn": [
@@ -231,7 +231,7 @@
 							"type": "Copy",
 							"dependsOn": [
 								{
-									"activity": "CheckUpdate Table",
+									"activity": "CheckUpdateTable",
 									"dependencyConditions": [
 										"Succeeded"
 									]
