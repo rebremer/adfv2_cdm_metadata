@@ -1,5 +1,5 @@
 {
-	"name": "BlogMetadataLoadtoSQLDW",
+	"name": "BlogLoadModeljsontoSQLDW",
 	"properties": {
 		"activities": [
 			{
