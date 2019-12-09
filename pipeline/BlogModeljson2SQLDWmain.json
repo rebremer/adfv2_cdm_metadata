@@ -138,8 +138,9 @@
 											},
 											"waitOnCompletion": true,
 											"parameters": {
-												"table": "@activity('ParseModeljson').output.results[0].name",
-												"query": "@activity('ParseModeljson').output.results[0].query"
+												"tableName": "@activity('ParseModeljson').output.results[0].name",
+												"query": "@activity('ParseModeljson').output.results[0].query",
+												"tableStructure": "@activity('ParseModeljson').output.results[0].tableStructure"
 											}
 										}
 									}
