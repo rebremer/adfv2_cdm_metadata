@@ -153,7 +153,7 @@
 						"parameters": {
 							"File": "@item().name",
 							"Schema": {
-								"value": "@activity('ParseModeljson').output.results[0].tableStructure",
+								"value": "@pipeline().parameters.tableStructure",
 								"type": "Expression"
 							}
 						}
