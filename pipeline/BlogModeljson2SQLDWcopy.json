@@ -132,8 +132,8 @@
 						"referenceName": "InsertcvstoSQLDB",
 						"type": "DatasetReference",
 						"parameters": {
-							"TableName": "@activity('ParseModeljson').output.results[0].tableName",
-							"TableSchema": "@activity('ParseModeljson').output.results[0].tableStructure"
+							"TableName": "@pipeline.parameters.tableName",
+							"TableSchema": "@pipeline.parameters.tableStructure"
 						}
 					}
 				]
