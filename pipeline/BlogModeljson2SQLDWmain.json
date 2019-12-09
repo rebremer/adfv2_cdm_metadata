@@ -230,11 +230,11 @@
 						"queryTimeout": "02:00:00"
 					},
 					"dataset": {
-						"referenceName": "GetTableDataFromSQLDB",
+						"referenceName": "InsertcvstoSQLDB",
 						"type": "DatasetReference",
 						"parameters": {
-							"cw_schema": "DummySchema",
-							"cw_table": "DummyTable"
+							"TableName": "DummyTable",
+							"TableSchema": []
 						}
 					}
 				}
