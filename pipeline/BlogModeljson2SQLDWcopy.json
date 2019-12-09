@@ -132,8 +132,8 @@
 						"referenceName": "InsertcvstoSQLDB",
 						"type": "DatasetReference",
 						"parameters": {
-							"TableName": "@pipeline.parameters.tableName",
-							"TableSchema": "@pipeline.parameters.tableStructure"
+							"TableName": "@pipeline().parameters.tableName",
+							"TableSchema": "@pipeline().parameters.tableStructure"
 						}
 					}
 				]
