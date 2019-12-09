@@ -140,7 +140,10 @@
 											"parameters": {
 												"tableName": "@activity('ParseModeljson').output.results[0].name",
 												"query": "@activity('ParseModeljson').output.results[0].query",
-												"tableStructure": "@activity('ParseModeljson').output.results[0].tableStructure"
+												"tableStructure": "@activity('ParseModeljson').output.results[0].tableStructure",
+												"folderFileName": "@item().name",
+												"modifiedName": "@activity('GetModeljsonFile').output.firstRow.ModifiedTime",
+												"refreshTimeDatabase": "@activity('GetLastRefreshTime').output.firstRow.RefreshTime"
 											}
 										}
 									}
