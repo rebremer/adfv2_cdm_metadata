@@ -47,7 +47,7 @@
 					},
 					"activities": [
 						{
-							"name": "Lookup1",
+							"name": "LookupModeljson",
 							"type": "Lookup",
 							"dependsOn": [],
 							"policy": {
@@ -74,11 +74,11 @@
 							}
 						},
 						{
-							"name": "parse",
+							"name": "ParseModeljson",
 							"type": "WebActivity",
 							"dependsOn": [
 								{
-									"activity": "Lookup1",
+									"activity": "LookupModeljson",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -96,17 +96,17 @@
 								"url": "https://blog-modeljson2sql-fun.azurewebsites.net/api/HttpTrigger?code=Tm/mdDMO3LHr291krJCSg7z4CnsIOEnpxNLjaxxJ7BdfwTL8VbVVsQ==",
 								"method": "POST",
 								"body": {
-									"value": "@activity('Lookup1').output",
+									"value": "@activity('LookupModeljson').output",
 									"type": "Expression"
 								}
 							}
 						},
 						{
-							"name": "Find Table",
+							"name": "FindTable",
 							"type": "Lookup",
 							"dependsOn": [
 								{
-									"activity": "parse",
+									"activity": "ParseModeljson",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -124,7 +124,7 @@
 								"source": {
 									"type": "AzureSqlSource",
 									"sqlReaderQuery": {
-										"value": "@concat('SELECT DISTINCT 1 FROM INFORMATION_SCHEMA.columns WHERE table_name = ''' ,activity('parse').output.results[0].name, '''')",
+										"value": "@concat('SELECT DISTINCT 1 FROM INFORMATION_SCHEMA.columns WHERE table_name = ''' ,activity('ParseModeljson').output.results[0].name, '''')",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00"
@@ -141,12 +141,12 @@
 							}
 						},
 						{
-							"name": "Check Table",
+							"name": "CheckUpdate Table",
 							"description": "If table is not found, create it, else check if columns are missing",
 							"type": "IfCondition",
 							"dependsOn": [
 								{
-									"activity": "Find Table",
+									"activity": "FindTable",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -155,7 +155,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"expression": {
-									"value": "@equals(activity('Find Table').output.count,1)",
+									"value": "@equals(activity('FindTable').output.count,1)",
 									"type": "Expression"
 								},
 								"ifFalseActivities": [
@@ -227,11 +227,11 @@
 							}
 						},
 						{
-							"name": "Copy data1",
+							"name": "Copy data SQL",
 							"type": "Copy",
 							"dependsOn": [
 								{
-									"activity": "Check Table",
+									"activity": "CheckUpdate Table",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -262,7 +262,7 @@
 									"parameters": {
 										"File": "@item().name",
 										"Schema": {
-											"value": "@activity('parse').output.results[0].tableStructure",
+											"value": "@activity('ParseModeljson').output.results[0].tableStructure",
 											"type": "Expression"
 										}
 									}
@@ -273,8 +273,8 @@
 									"referenceName": "InsertcvstoSQLDB",
 									"type": "DatasetReference",
 									"parameters": {
-										"TableName": "@activity('parse').output.results[0].tableName",
-										"TableSchema": "@activity('parse').output.results[0].tableStructure"
+										"TableName": "@activity('ParseModeljson').output.results[0].tableName",
+										"TableSchema": "@activity('ParseModeljson').output.results[0].tableStructure"
 									}
 								}
 							]
