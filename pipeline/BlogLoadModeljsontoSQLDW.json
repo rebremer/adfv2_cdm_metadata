@@ -262,6 +262,39 @@
 												}
 											}
 										]
+									},
+									{
+										"name": "UpdateRefreshTime",
+										"type": "SqlServerStoredProcedure",
+										"dependsOn": [
+											{
+												"activity": "CopyDataSQL",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"policy": {
+											"timeout": "7.00:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"storedProcedureName": "[dbo].[ExecuteQuery]",
+											"storedProcedureParameters": {
+												"query": {
+													"value": "@{concat('insert into [dbo].[ADFCDSACopyTracker] values(''',pactivity('ParseModeljson').output.results[0].name,''',''',concat(item().folderPath, item().filePath),''', ''',pipeline().RunId, ''', ''',item().refreshTime,''',''',pipeline().parameters.EntityModifiedTime,''')')}",
+													"type": "String"
+												}
+											}
+										},
+										"linkedServiceName": {
+											"referenceName": "AzureSqlDatabase1",
+											"type": "LinkedServiceReference"
+										}
 									}
 								]
 							}
