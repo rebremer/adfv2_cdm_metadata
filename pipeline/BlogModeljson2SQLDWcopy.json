@@ -193,10 +193,6 @@
 					"storedProcedureName": "[dbo].[ExecuteQuery]",
 					"storedProcedureParameters": {
 						"query": {
-							"value": {
-								"value": "@{concat('insert into [dbo].[ADFCDSACopyTracker] values(''',pipeline().parameters.folderFileName,''',''',concat('sqldbdata', '/', dataset().File, '/', utcnow('yyyy'), '/', utcnow('MM'), '/', utcnow('dd'), '/', pipeline().parameters.folderFileName)),''', ''',pipeline().RunId, ''', ''',activity('GetLastRefreshTime').output.firstRow.RefreshTime,''',''',pipeline().parameters.modifiedTime,''')')}",
-								"type": "Expression"
-							},
 							"type": "String"
 						}
 					}
@@ -221,6 +217,9 @@
 				"type": "string"
 			},
 			"modifiedTime": {
+				"type": "string"
+			},
+			"refreshTimeDatabase": {
 				"type": "string"
 			}
 		},
