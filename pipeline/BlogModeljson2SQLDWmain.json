@@ -30,7 +30,9 @@
 							"TableSchema": []
 						}
 					},
-					"fieldList": []
+					"fieldList": [
+						"columnCount"
+					]
 				}
 			},
 			{
