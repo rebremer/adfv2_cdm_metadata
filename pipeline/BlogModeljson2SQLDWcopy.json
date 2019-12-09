@@ -1,6 +1,261 @@
 {
 	"name": "BlogModeljson2SQLDWcopy",
 	"properties": {
+		"activities": [
+			{
+				"name": "FindTable",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": {
+							"value": "@concat('SELECT DISTINCT 1 FROM INFORMATION_SCHEMA.columns WHERE table_name = ''' ,activity('ParseModeljson').output.results[0].name, '''')",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00"
+					},
+					"dataset": {
+						"referenceName": "InsertcvstoSQLDB",
+						"type": "DatasetReference",
+						"parameters": {
+							"TableName": "DummyTable",
+							"TableSchema": "DummySchema"
+						}
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "CheckUpdateTable",
+				"description": "If table is not found, create it, else check if columns are missing",
+				"type": "IfCondition",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(activity('FindTable').output.count,1)",
+						"type": "Expression"
+					},
+					"ifFalseActivities": [
+						{
+							"name": "CreateTable",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": "dbo.ExecuteQuery",
+								"storedProcedureParameters": {
+									"query": {
+										"value": {
+											"value": "@activity('ParseModeljson').output.results[0].query",
+											"type": "Expression"
+										},
+										"type": "String"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "AzureSqlDatabase1",
+								"type": "LinkedServiceReference"
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "FindTable",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": {
+							"value": "@concat('SELECT DISTINCT 1 FROM INFORMATION_SCHEMA.columns WHERE table_name = ''' ,activity('ParseModeljson').output.results[0].name, '''')",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00"
+					},
+					"dataset": {
+						"referenceName": "InsertcvstoSQLDB",
+						"type": "DatasetReference",
+						"parameters": {
+							"TableName": "DummyTable",
+							"TableSchema": "DummySchema"
+						}
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "CheckUpdateTable",
+				"description": "If table is not found, create it, else check if columns are missing",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "FindTable",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(activity('FindTable').output.count,1)",
+						"type": "Expression"
+					},
+					"ifFalseActivities": [
+						{
+							"name": "CreateTable_copy1",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": "dbo.ExecuteQuery",
+								"storedProcedureParameters": {
+									"query": {
+										"value": {
+											"value": "@activity('ParseModeljson').output.results[0].query",
+											"type": "Expression"
+										},
+										"type": "String"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "AzureSqlDatabase1",
+								"type": "LinkedServiceReference"
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "CopyDataSQL",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "CheckUpdateTable",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureBlobFSSource",
+						"recursive": true
+					},
+					"sink": {
+						"type": "AzureSqlSink"
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "LoadcsvfromADLSgen2",
+						"type": "DatasetReference",
+						"parameters": {
+							"File": "@item().name",
+							"Schema": {
+								"value": "@activity('ParseModeljson').output.results[0].tableStructure",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "InsertcvstoSQLDB",
+						"type": "DatasetReference",
+						"parameters": {
+							"TableName": "@activity('ParseModeljson').output.results[0].tableName",
+							"TableSchema": "@activity('ParseModeljson').output.results[0].tableStructure"
+						}
+					}
+				]
+			},
+			{
+				"name": "UpdateRefreshTime",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "CopyDataSQL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[ExecuteQuery]",
+					"storedProcedureParameters": {
+						"query": {
+							"value": {
+								"value": "@{concat('insert into [dbo].[ADFCDSACopyTracker] values(''',pactivity('ParseModeljson').output.results[0].name,''',''',concat('sqldbdata', '/', dataset().File, '/', utcnow('yyyy'), '/', utcnow('MM'), '/', utcnow('dd'), '/', dataset().File)),''', ''',pipeline().RunId, ''', ''',activity('GetLastRefreshTime').output.firstRow.RefreshTime,''',''',activity('GetModeljsonFile').output.firstRow.ModifiedTime,''')')}",
+								"type": "Expression"
+							},
+							"type": "String"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"parameters": {
+			"table": {
+				"type": "string"
+			}
+		},
 		"annotations": []
 	}
 }
