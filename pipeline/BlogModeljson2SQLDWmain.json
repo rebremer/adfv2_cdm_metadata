@@ -23,16 +23,14 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "ListFolders",
-						"type": "DatasetReference"
+						"referenceName": "InsertcvstoSQLDB",
+						"type": "DatasetReference",
+						"parameters": {
+							"TableName": "[dbo].[ADFCDSACopyTracker]",
+							"TableSchema": []
+						}
 					},
-					"fieldList": [
-						"childItems"
-					],
-					"storeSettings": {
-						"type": "AzureBlobFSReadSettings",
-						"recursive": true
-					}
+					"fieldList": []
 				}
 			},
 			{
@@ -187,7 +185,7 @@
 										"TableSchema": []
 									}
 								},
-								"firstRowOnly": false
+								"firstRowOnly": true
 							}
 						}
 					]
