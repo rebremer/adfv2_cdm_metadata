@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Get Metadata1",
+				"name": "GetFoldersModeljson",
 				"type": "GetMetadata",
 				"dependsOn": [],
 				"policy": {
@@ -29,11 +29,11 @@
 				}
 			},
 			{
-				"name": "ForEach1",
+				"name": "AddDataModeljson",
 				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "Get Metadata1",
+						"activity": "GetFoldersModeljson",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -42,12 +42,12 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Get Metadata1').output.childItems",
+						"value": "@activity('GetFoldersModeljson').output.childItems",
 						"type": "Expression"
 					},
 					"activities": [
 						{
-							"name": "LookupModeljson",
+							"name": "GetModeljsonFile",
 							"type": "Lookup",
 							"dependsOn": [],
 							"policy": {
@@ -78,7 +78,7 @@
 							"type": "WebActivity",
 							"dependsOn": [
 								{
-									"activity": "LookupModeljson",
+									"activity": "GetModeljsonFile",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -96,7 +96,7 @@
 								"url": "https://blog-modeljson2sql-fun.azurewebsites.net/api/HttpTrigger?code=Tm/mdDMO3LHr291krJCSg7z4CnsIOEnpxNLjaxxJ7BdfwTL8VbVVsQ==",
 								"method": "POST",
 								"body": {
-									"value": "@activity('LookupModeljson').output",
+									"value": "@activity('GetModeljsonFile').output",
 									"type": "Expression"
 								}
 							}
