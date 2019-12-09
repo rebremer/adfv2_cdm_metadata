@@ -162,7 +162,7 @@
 					"storedProcedureParameters": {
 						"query": {
 							"value": {
-								"value": "@{concat('insert into [dbo].[ADFCDSACopyTracker] values(''',pipeline().parameters.tableName,''',''',concat('sqldbdata', '/', pipeline().parameters.folderFileName, '/', utcnow('yyyy'), '/', utcnow('MM'), '/', utcnow('dd'), '/', pipeline().parameters.folderFileName),''', ''',pipeline().RunId, ''', ''',pipeline().parameters.refreshTimeDatabase,''',''',pipeline().parameters.modifiedTime,''')')}",
+								"value": "@{concat('insert into [dbo].[ADFCDSACopyTracker] values(''',pipeline().parameters.tableName,''',''',concat('sqldbdata', '/', pipeline().parameters.folderFileName, '/', utcnow('yyyy'), '/', utcnow('MM'), '/', utcnow('dd'), '/', pipeline().parameters.folderFileName),''', ''',pipeline().RunId, ''', ''',pipeline().parameters.modifiedTime,''',''',pipeline().parameters.modifiedTime,''')')}",
 								"type": "Expression"
 							},
 							"type": "String"
