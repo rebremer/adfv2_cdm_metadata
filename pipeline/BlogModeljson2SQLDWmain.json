@@ -174,7 +174,7 @@
 								"source": {
 									"type": "AzureSqlSource",
 									"sqlReaderQuery": {
-										"value": "@{concat('select top 1 * from [dbo].[ADFCDSACopyTracker] where [EntityName] = ''', activity('ParseModeljson').output.results[0].name,''' and [PartionLocation] = ''', concat(item().folderPath, item().filePath), ''' order by [Id] desc')}",
+										"value": "@{concat('select top 1 * from [dbo].[ADFCDSACopyTracker] where [EntityName] = ''', activity('ParseModeljson').output.results[0].name,''' and [PartionLocation] = ''', concat('sqldbdata', '/', pipeline().parameters.folderFileName, '/', utcnow('yyyy'), '/', utcnow('MM'), '/', utcnow('dd'), '/', pipeline().parameters.folderFileName)), ''' order by [Id] desc')}",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00"
