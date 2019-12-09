@@ -139,12 +139,30 @@
 											},
 											"waitOnCompletion": true,
 											"parameters": {
-												"tableName": "@activity('ParseModeljson').output.results[0].name",
-												"query": "@activity('ParseModeljson').output.results[0].query",
-												"tableStructure": "@activity('ParseModeljson').output.results[0].tableStructure",
-												"folderFileName": "@item().name",
-												"modifiedName": "@activity('GetModeljsonFile').output.firstRow.ModifiedTime",
-												"refreshTimeDatabase": "@activity('GetLastRefreshTime').output?.firstRow?.RefreshTime"
+												"tableName": {
+													"value": "@activity('ParseModeljson').output.results[0].name",
+													"type": "Expression"
+												},
+												"query": {
+													"value": "@activity('ParseModeljson').output.results[0].query",
+													"type": "Expression"
+												},
+												"tableStructure": {
+													"value": "@activity('ParseModeljson').output.results[0].tableStructure",
+													"type": "Expression"
+												},
+												"folderFileName": {
+													"value": "@item().name",
+													"type": "Expression"
+												},
+												"modifiedTime": {
+													"value": "@activity('GetModeljsonFile').output.firstRow.ModifiedTime",
+													"type": "Expression"
+												},
+												"refreshTimeDatabase": {
+													"value": "@activity('GetLastRefreshTime').output?.firstRow?.RefreshTime",
+													"type": "Expression"
+												}
 											}
 										}
 									}
