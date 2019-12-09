@@ -160,7 +160,7 @@
 								},
 								"ifFalseActivities": [
 									{
-										"name": "prepDW",
+										"name": "CreateTable",
 										"type": "Lookup",
 										"dependsOn": [],
 										"policy": {
@@ -192,7 +192,7 @@
 										"type": "SqlServerStoredProcedure",
 										"dependsOn": [
 											{
-												"activity": "prepDW",
+												"activity": "CreateTable",
 												"dependencyConditions": [
 													"Succeeded"
 												]
@@ -227,7 +227,7 @@
 							}
 						},
 						{
-							"name": "Copy data SQL",
+							"name": "CopyDataSQL",
 							"type": "Copy",
 							"dependsOn": [
 								{
