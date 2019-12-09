@@ -194,7 +194,7 @@
 					"storedProcedureParameters": {
 						"query": {
 							"value": {
-								"value": "@{concat('insert into [dbo].[ADFCDSACopyTracker] values(''',pactivity('ParseModeljson').output.results[0].name,''',''',concat('sqldbdata', '/', dataset().File, '/', utcnow('yyyy'), '/', utcnow('MM'), '/', utcnow('dd'), '/', dataset().File)),''', ''',pipeline().RunId, ''', ''',activity('GetLastRefreshTime').output.firstRow.RefreshTime,''',''',activity('GetModeljsonFile').output.firstRow.ModifiedTime,''')')}",
+								"value": "@{concat('insert into [dbo].[ADFCDSACopyTracker] values(''',pipeline().parameters.folderFileName,''',''',concat('sqldbdata', '/', dataset().File, '/', utcnow('yyyy'), '/', utcnow('MM'), '/', utcnow('dd'), '/', pipeline().parameters.folderFileName)),''', ''',pipeline().RunId, ''', ''',activity('GetLastRefreshTime').output.firstRow.RefreshTime,''',''',pipeline().parameters.modifiedTime,''')')}",
 								"type": "Expression"
 							},
 							"type": "String"
@@ -218,6 +218,9 @@
 				"type": "array"
 			},
 			"folderFileName": {
+				"type": "string"
+			},
+			"modifiedTime": {
 				"type": "string"
 			}
 		},
