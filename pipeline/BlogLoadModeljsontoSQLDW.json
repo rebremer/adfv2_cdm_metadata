@@ -110,10 +110,11 @@
 						},
 						{
 							"name": "RefreshData",
+							"description": "Check if Data is refreshed. It not, then check if table exists and/or update table. Then copy data.",
 							"type": "IfCondition",
 							"dependsOn": [
 								{
-									"activity": "ParseModeljson",
+									"activity": "GetLastRefreshTime",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -121,6 +122,10 @@
 							],
 							"userProperties": [],
 							"typeProperties": {
+								"expression": {
+									"value": "@greater(item().refreshTime,coalesce(activity('GetLastRefreshTime').output.firstRow.RefreshTime, '0001-01-01'))",
+									"type": "Expression"
+								},
 								"ifTrueActivities": [
 									{
 										"name": "FindTable",
@@ -259,6 +264,42 @@
 										]
 									}
 								]
+							}
+						},
+						{
+							"name": "GetLastRefreshTime",
+							"type": "Lookup",
+							"dependsOn": [
+								{
+									"activity": "ParseModeljson",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"sqlReaderQuery": "@{concat('select top 1 * from [dbo].[ADFCDSACopyTracker] where [EntityName] = ''', pipeline().parameters.EntityName,''' and [PartionLocation] = ''', concat(item().folderPath, item().filePath), ''' order by [Id] desc')}",
+									"queryTimeout": "02:00:00"
+								},
+								"dataset": {
+									"referenceName": "InsertcvstoSQLDB",
+									"type": "DatasetReference",
+									"parameters": {
+										"TableName": "[dbo].[ADFCDSACopyTracker]",
+										"TableSchema": []
+									}
+								},
+								"firstRowOnly": false
 							}
 						}
 					]
