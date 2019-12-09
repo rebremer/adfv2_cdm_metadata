@@ -216,6 +216,9 @@
 			},
 			"tableStructure": {
 				"type": "array"
+			},
+			"folderFileName": {
+				"type": "string"
 			}
 		},
 		"annotations": []
