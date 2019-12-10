@@ -28,7 +28,10 @@
 							"typeProperties": {
 								"source": {
 									"type": "AzureSqlSource",
-									"sqlReaderQuery": "@concat('SELECT DISTINCT 1 FROM INFORMATION_SCHEMA.columns WHERE table_name = ''' ,pipeline().parameters.tableName, ''', 'AND ',  ''' , item().name, ''')",
+									"sqlReaderQuery": {
+										"value": "@concat('SELECT DISTINCT 1 FROM INFORMATION_SCHEMA.columns WHERE table_name = ''' ,pipeline().parameters.tableName, ''', ' AND ',  ''' , item().name, ''')",
+										"type": "Expression"
+									},
 									"queryTimeout": "02:00:00"
 								},
 								"dataset": {
@@ -76,7 +79,10 @@
 											"storedProcedureName": "[dbo].[ExecuteQuery]",
 											"storedProcedureParameters": {
 												"query": {
-													"value": "@concat('ALTER TABLE ', ''' ,pipeline().parameters.tableName, ''', 'ADD ',  ''' , item().name, ' ', item().type, ''')"
+													"value": {
+														"value": "@concat('ALTER TABLE  ', pipeline().parameters.tableName,  ' ADD ',  item().name item().type)",
+														"type": "Expression"
+													}
 												}
 											}
 										},
