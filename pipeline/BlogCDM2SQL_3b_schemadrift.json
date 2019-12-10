@@ -1,5 +1,5 @@
 {
-	"name": "BlogModeljsonSQLDWSchemadrift",
+	"name": "BlogCDM2SQL_3b_schemadrift",
 	"properties": {
 		"activities": [
 			{
