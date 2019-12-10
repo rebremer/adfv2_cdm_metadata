@@ -18,6 +18,9 @@
 		"parameters": {
 			"tableStructure": {
 				"type": "array"
+			},
+			"tableName": {
+				"type": "string"
 			}
 		},
 		"annotations": []

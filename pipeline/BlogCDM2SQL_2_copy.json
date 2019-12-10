@@ -83,7 +83,8 @@
 								},
 								"waitOnCompletion": true,
 								"parameters": {
-									"tableStructure": "@pipeline.parameters.tableStructure"
+									"tableStructure": "@pipeline.parameters.tableStructure",
+									"tableName": "@pipeline.parameters.tableName"
 								}
 							}
 						}
