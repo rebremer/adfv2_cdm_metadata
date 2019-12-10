@@ -25,13 +25,7 @@
 							"type": "Copy",
 							"dependsOn": [
 								{
-									"activity": "SetTableStructure",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								},
-								{
-									"activity": "SetTableName",
+									"activity": "GetTableStructure",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -116,45 +110,6 @@
 									"structure",
 									"columnCount"
 								]
-							}
-						},
-						{
-							"name": "SetTableStructure",
-							"type": "SetVariable",
-							"dependsOn": [
-								{
-									"activity": "GetTableStructure",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"variableName": "tableStructureArray",
-								"value": [
-									"@activity('GetTableStructure').output"
-								]
-							}
-						},
-						{
-							"name": "SetTableName",
-							"type": "SetVariable",
-							"dependsOn": [
-								{
-									"activity": "GetTableStructure",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"variableName": "tableNameArray",
-								"value": {
-									"value": "@array(concat(item().source.schema, item().source.table))",
-									"type": "Expression"
-								}
 							}
 						},
 						{
