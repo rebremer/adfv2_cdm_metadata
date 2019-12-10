@@ -36,7 +36,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"TableName": "DummyTable",
-										"TableSchema": []
+										"TableSchema": "DummySchema"
 									}
 								},
 								"firstRowOnly": false
