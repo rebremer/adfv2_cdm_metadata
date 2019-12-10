@@ -263,24 +263,6 @@
 					{
 						"source": {
 							"schema": "SalesLT",
-							"table": "ProductDescription"
-						},
-						"destination": {
-							"fileName": "SalesLTProductDescription.txt"
-						}
-					},
-					{
-						"source": {
-							"schema": "SalesLT",
-							"table": "ProductModel"
-						},
-						"destination": {
-							"fileName": "SalesLTProductModel.txt"
-						}
-					},
-					{
-						"source": {
-							"schema": "SalesLT",
 							"table": "ProductModelProductDescription"
 						},
 						"destination": {
