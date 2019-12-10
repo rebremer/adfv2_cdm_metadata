@@ -104,18 +104,6 @@
 			},
 			"tableName": {
 				"type": "string"
-			},
-			"dataTypeMap": {
-				"type": "string",
-				"defaultValue": {
-					"String": "nvarchar(350)",
-					"Int64": "int",
-					"DateTime": "datetime",
-					"Boolean": "bit",
-					"Double": "float",
-					"Decimal": "float",
-					"DateTimeOffset": "DateTimeOffset"
-				}
 			}
 		},
 		"annotations": []
