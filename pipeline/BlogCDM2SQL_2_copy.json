@@ -65,7 +65,10 @@
 								},
 								"waitOnCompletion": true,
 								"parameters": {
-									"query": "@pipeline().parameters.query"
+									"query": {
+										"value": "@pipeline().parameters.query",
+										"type": "Expression"
+									}
 								}
 							}
 						}
@@ -83,8 +86,14 @@
 								},
 								"waitOnCompletion": true,
 								"parameters": {
-									"tableStructure": "@pipeline.parameters.tableStructure",
-									"tableName": "@pipeline.parameters.tableName"
+									"tableStructure": {
+										"value": "@pipeline().parameters.tableStructure",
+										"type": "Expression"
+									},
+									"tableName": {
+										"value": "@pipeline().parameters.tableName",
+										"type": "Expression"
+									}
 								}
 							}
 						}
