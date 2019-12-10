@@ -35,7 +35,7 @@
 		"parameters": {
 			"query": {
 				"type": "string",
-				"defaultValue": "@concat('ALTER TABLE ', ''' ,pipeline().parameters.tableName, ''', 'ADD ',  ''' , item().name, ' ', item().type, ''')"
+				"defaultValue": "@pipeline.parameters.query"
 			}
 		},
 		"annotations": []
