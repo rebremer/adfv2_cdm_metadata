@@ -1,5 +1,5 @@
 {
-	"name": "BlogModeljson2SQLDWmain",
+	"name": "BlogCDM2SQL_1_main",
 	"properties": {
 		"activities": [
 			{
@@ -134,7 +134,7 @@
 										"userProperties": [],
 										"typeProperties": {
 											"pipeline": {
-												"referenceName": "BlogModeljson2SQLDWcopy",
+												"referenceName": "BlogCDM2SQL_2_copy",
 												"type": "PipelineReference"
 											},
 											"waitOnCompletion": true,
