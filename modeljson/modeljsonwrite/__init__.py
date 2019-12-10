@@ -17,6 +17,7 @@ from jsonschema import validate
 import collections
 import json
 from . import cdmschema
+from datetime import datetime
 writeToStor = False
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
@@ -38,7 +39,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     d['name'] = "BlogMetaData"
     d['description'] = "Example model.json using CDM json schema"
     d['version'] = "1.0"
-    d['modifiedTime']: "2019-10-21T23:59:59+0200"
+    d['modifiedTime'] = str(datetime.utcnow().isoformat()) + "Z"
     annotation = collections.OrderedDict()
     annotation['retentionPeriod'] = par_processMetaDataStor[0]['firstRow']['retentionPeriod']
     annotation['sourceSystem'] = par_processMetaDataStor[0]['firstRow']['sourceSystem']
@@ -48,36 +49,26 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
     # set entities
     entities = []
-    i=0
-    while i < len(par_tableStructureArray):
-        #print ("TABLE: " + par_tableNameArray[i])
-  
-        tableStructure = par_tableStructureArray[i]['structure']
-        array = []
-        for field in tableStructure:
-            #print(field['name'] + ', ' + field['physicalType'])
-            if field['logicalType'] == "Int32" or field['logicalType'] == "Byte" or field['logicalType'] == "Int16":
-                array.append({"name": field['name'], "dataType": "int64"})
-            elif field['logicalType'] == "String":
-                array.append({"name": field['name'], "dataType": "string"})
-            elif field['logicalType'] == "Guid":
-                array.append({"name": field['name'], "dataType": "guid"})
-            elif field['logicalType'] == "DateTime":
-                array.append({"name": field['name'], "dataType": "dateTime"})
-            elif field['logicalType'] == "Boolean":
-                array.append({"name": field['name'], "dataType": "boolean"})
-            elif field['logicalType'] == "Decimal":
-                array.append({"name": field['name'], "dataType": "decimal"})
-            elif field['logicalType'] == "Byte[]":
-                array.append({"name": field['name'], "dataType": "unclassified"})
-            else:
-                array.append({"name": field['name'], "dataType": field['logicalType']})
+    array = []
+    for field in par_tableStructureArray:
+        if field['logicalType'] == "Int32" or field['logicalType'] == "Byte" or field['logicalType'] == "Int16":
+            array.append({"name": field['name'], "dataType": "int64"})
+        elif field['logicalType'] == "String":
+            array.append({"name": field['name'], "dataType": "string"})
+        elif field['logicalType'] == "Guid":
+            array.append({"name": field['name'], "dataType": "guid"})
+        elif field['logicalType'] == "DateTime":
+            array.append({"name": field['name'], "dataType": "dateTime"})
+        elif field['logicalType'] == "Boolean":
+            array.append({"name": field['name'], "dataType": "boolean"})
+        elif field['logicalType'] == "Decimal":
+            array.append({"name": field['name'], "dataType": "decimal"})
+        elif field['logicalType'] == "Byte[]":
+            array.append({"name": field['name'], "dataType": "unclassified"})
+        else:
+            array.append({"name": field['name'], "dataType": field['logicalType']})
           
-        entities.append({"$type": "LocalEntity", "name": par_tableNameArray[i], "description": "", "attributes": array})
-    
-        i+=1
-        #print("\n")
-
+    entities.append({"$type": "LocalEntity", "name": par_tableNameArray, "description": "", "attributes": array})
     d['entities'] = entities
 
     model_json = json.dumps(d, indent=4)
