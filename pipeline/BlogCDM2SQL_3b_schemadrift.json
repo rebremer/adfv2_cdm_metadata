@@ -80,7 +80,7 @@
 											"storedProcedureParameters": {
 												"query": {
 													"value": {
-														"value": "@concat('ALTER TABLE', pipeline().parameters.tableName,  '  ADD  ',  item().name, ' ', item().type)",
+														"value": "@concat('ALTER TABLE ', pipeline().parameters.tableName,  ' ADD ',  item().name, ' ', item().type)",
 														"type": "Expression"
 													}
 												}
