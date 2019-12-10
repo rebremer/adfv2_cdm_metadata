@@ -81,7 +81,10 @@
 									"referenceName": "BlogCDM2SQL_3b_schemadrift",
 									"type": "PipelineReference"
 								},
-								"waitOnCompletion": true
+								"waitOnCompletion": true,
+								"parameters": {
+									"tableStructure": "@pipeline.parameters.tableStructure"
+								}
 							}
 						}
 					]
