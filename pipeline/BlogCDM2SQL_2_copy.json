@@ -1,5 +1,5 @@
 {
-	"name": "BlogModeljson2SQLDWcopy",
+	"name": "BlogCDM2SQL_2_copy",
 	"properties": {
 		"activities": [
 			{
@@ -80,6 +80,21 @@
 							"linkedServiceName": {
 								"referenceName": "AzureSqlDatabase1",
 								"type": "LinkedServiceReference"
+							}
+						}
+					],
+					"ifTrueActivities": [
+						{
+							"name": "SchemaDrift",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "BlogCDM2SQL_3b_schemadrift",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true
 							}
 						}
 					]
