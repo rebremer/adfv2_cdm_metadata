@@ -1,0 +1,25 @@
+{
+	"name": "BlogModeljsonSQLDWSchemadrift",
+	"properties": {
+		"activities": [
+			{
+				"name": "CheckColumn",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.tableStructure",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"tableStructure": {
+				"type": "array"
+			}
+		},
+		"annotations": []
+	}
+}
