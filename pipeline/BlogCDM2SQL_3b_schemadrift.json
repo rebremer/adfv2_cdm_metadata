@@ -41,6 +41,19 @@
 								},
 								"firstRowOnly": false
 							}
+						},
+						{
+							"name": "CheckAddColumn",
+							"type": "IfCondition",
+							"dependsOn": [
+								{
+									"activity": "FindColumn",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": []
 						}
 					]
 				}
