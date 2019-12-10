@@ -28,6 +28,7 @@
 							"typeProperties": {
 								"source": {
 									"type": "AzureSqlSource",
+									"sqlReaderQuery": "@concat('SELECT DISTINCT 1 FROM INFORMATION_SCHEMA.columns WHERE table_name = ''' ,pipeline().parameters.tableName, ''', 'AND ',  ''' , item().name, ''')@concat('SELECT DISTINCT 1 FROM INFORMATION_SCHEMA.columns WHERE table_name = ''' ,pipeline().parameters.tableName, '''')",
 									"queryTimeout": "02:00:00"
 								},
 								"dataset": {
@@ -37,7 +38,8 @@
 										"TableName": "DummyTable",
 										"TableSchema": []
 									}
-								}
+								},
+								"firstRowOnly": false
 							}
 						}
 					]
