@@ -1,0 +1,259 @@
+{
+	"name": "BlogCDM2SQL_1_main",
+	"properties": {
+		"activities": [
+			{
+				"name": "GetFoldersModeljson",
+				"type": "GetMetadata",
+				"dependsOn": [
+					{
+						"activity": "PrepDatabase",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "ListFolders",
+						"type": "DatasetReference"
+					},
+					"fieldList": [
+						"childItems"
+					],
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"recursive": true
+					}
+				}
+			},
+			{
+				"name": "AddDataModeljson",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "GetFoldersModeljson",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('GetFoldersModeljson').output.childItems",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "GetModeljsonFile",
+							"type": "Lookup",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "JsonSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": false,
+										"enablePartitionDiscovery": false
+									}
+								},
+								"dataset": {
+									"referenceName": "getModelJSON",
+									"type": "DatasetReference"
+								}
+							}
+						},
+						{
+							"name": "ParseModeljson",
+							"type": "WebActivity",
+							"dependsOn": [
+								{
+									"activity": "GetModeljsonFile",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"url": "https://blog-modeljson2sql-fun.azurewebsites.net/api/HttpTrigger?code=Tm/mdDMO3LHr291krJCSg7z4CnsIOEnpxNLjaxxJ7BdfwTL8VbVVsQ==",
+								"method": "POST",
+								"body": {
+									"value": "@activity('GetModeljsonFile').output",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "RefreshData",
+							"description": "Check if Data is refreshed. It not, then check if table exists and/or update table. Then copy data.",
+							"type": "IfCondition",
+							"dependsOn": [
+								{
+									"activity": "GetLastRefreshTime",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"expression": {
+									"value": "@greater(activity('GetModeljsonFile').output.firstRow.ModifiedTime,coalesce(activity('GetLastRefreshTime').output?.firstRow?.RefreshTime, '0001-01-01'))",
+									"type": "Expression"
+								},
+								"ifTrueActivities": [
+									{
+										"name": "CopyData",
+										"type": "ExecutePipeline",
+										"dependsOn": [],
+										"userProperties": [],
+										"typeProperties": {
+											"pipeline": {
+												"referenceName": "BlogCDM2SQL_2_copy",
+												"type": "PipelineReference"
+											},
+											"waitOnCompletion": true,
+											"parameters": {
+												"tableName": {
+													"value": "@activity('ParseModeljson').output.results[0].name",
+													"type": "Expression"
+												},
+												"query": {
+													"value": "@activity('ParseModeljson').output.results[0].query",
+													"type": "Expression"
+												},
+												"tableStructure": {
+													"value": "@activity('ParseModeljson').output.results[0].tableStructure",
+													"type": "Expression"
+												},
+												"folderFileName": {
+													"value": "@item().name",
+													"type": "Expression"
+												},
+												"modifiedTime": {
+													"value": "@activity('GetModeljsonFile').output.firstRow.ModifiedTime",
+													"type": "Expression"
+												},
+												"refreshTimeDatabase": {
+													"value": "@activity('GetLastRefreshTime').output?.firstRow?.RefreshTime",
+													"type": "Expression"
+												}
+											}
+										}
+									}
+								]
+							}
+						},
+						{
+							"name": "GetLastRefreshTime",
+							"type": "Lookup",
+							"dependsOn": [
+								{
+									"activity": "ParseModeljson",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"sqlReaderQuery": {
+										"value": "@{concat('select top 1 * from [dbo].[ADFCDSACopyTracker] where [EntityName] = ''', activity('ParseModeljson').output.results[0].name,''' and [PartionLocation] = ''', concat('sqldbdata', '/', item().name, '/', utcnow('yyyy'), '/', utcnow('MM'), '/', utcnow('dd'), '/', item().name), ''' order by [Id] desc')}",
+										"type": "Expression"
+									},
+									"queryTimeout": "02:00:00"
+								},
+								"dataset": {
+									"referenceName": "InsertcvstoSQLDB",
+									"type": "DatasetReference",
+									"parameters": {
+										"TableName": "[dbo].[ADFCDSACopyTracker]",
+										"TableSchema": []
+									}
+								},
+								"firstRowOnly": true
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "PrepDatabase",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "IF NOT EXISTS (SELECT * FROM sysobjects WHERE id = object_id(N'[dbo].[ExecuteQuery]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1) BEGIN EXEC ('CREATE PROC [dbo].[ExecuteQuery] @query [nvarchar](max) AS EXEC (@query)'); SELECT 1; END ELSE SELECT 2; IF NOT EXISTS (SELECT * FROM sysobjects WHERE id = object_id(N'[dbo].[ADFCDSACopyTracker]') AND OBJECTPROPERTY(id, N'IsTable') = 1) BEGIN EXEC ('CREATE TABLE  [dbo].[ADFCDSACopyTracker] ( [Id] [int] IDENTITY(1,1) NOT NULL, [EntityName] [nvarchar](200) NULL, [PartionLocation] [nvarchar](500) NULL, [RunId] [nvarchar](200) NULL, [RefreshTime] [nvarchar](200) NULL)'); SELECT 3; END ELSE SELECT 4;",
+						"queryTimeout": "02:00:00"
+					},
+					"dataset": {
+						"referenceName": "InsertcvstoSQLDB",
+						"type": "DatasetReference",
+						"parameters": {
+							"TableName": "DummyTable",
+							"TableSchema": []
+						}
+					}
+				}
+			}
+		],
+		"parameters": {
+			"year": {
+				"type": "string",
+				"defaultValue": "2019"
+			},
+			"month": {
+				"type": "string",
+				"defaultValue": "12"
+			},
+			"day": {
+				"type": "string",
+				"defaultValue": "9"
+			}
+		},
+		"annotations": []
+	}
+}

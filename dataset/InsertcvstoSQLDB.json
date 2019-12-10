@@ -1,0 +1,29 @@
+{
+	"name": "InsertcvstoSQLDB",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"TableName": {
+				"type": "string"
+			},
+			"TableSchema": {
+				"type": "array"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"structure": {
+			"value": "@dataset().TableSchema",
+			"type": "Expression"
+		},
+		"typeProperties": {
+			"tableName": {
+				"value": "@dataset().TableName",
+				"type": "Expression"
+			}
+		}
+	}
+}

@@ -1,0 +1,22 @@
+{
+	"name": "getModelJSON",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Blogadlsgen2stor",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "model_adfv2directly.json",
+				"folderPath": {
+					"value": "@concat(item().name, '/', utcnow('yyyy'), '/', utcnow('MM'), '/', utcnow('dd'))",
+					"type": "Expression"
+				},
+				"fileSystem": "sqldbdata"
+			}
+		}
+	}
+}

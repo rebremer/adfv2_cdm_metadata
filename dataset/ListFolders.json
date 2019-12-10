@@ -1,0 +1,17 @@
+{
+	"name": "ListFolders",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Blogadlsgen2stor",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "sqldbdata"
+			}
+		}
+	}
+}

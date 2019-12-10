@@ -1,0 +1,44 @@
+{
+	"name": "LoadcsvfromADLSgen2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Blogadlsgen2stor",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"File": {
+				"type": "String"
+			},
+			"Schema": {
+				"type": "Array"
+			}
+		},
+		"annotations": [],
+		"type": "AzureBlobFSFile",
+		"structure": {
+			"value": "@dataset().Schema",
+			"type": "Expression"
+		},
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"rowDelimiter": "",
+				"quoteChar": "\"",
+				"nullValue": "NULL",
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": false
+			},
+			"fileName": {
+				"value": "@concat(dataset().File, '/', utcnow('yyyy'), '/', utcnow('MM'), '/', utcnow('dd'), '/', dataset().File)",
+				"type": "Expression"
+			},
+			"folderPath": {
+				"value": "sqldbdata",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
