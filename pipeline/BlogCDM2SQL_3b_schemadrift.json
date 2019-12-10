@@ -53,7 +53,13 @@
 									]
 								}
 							],
-							"userProperties": []
+							"userProperties": [],
+							"typeProperties": {
+								"expression": {
+									"value": "@equals(activity('FindColumn').output.count,1)",
+									"type": "Expression"
+								}
+							}
 						}
 					]
 				}
