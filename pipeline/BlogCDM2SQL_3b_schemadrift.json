@@ -75,8 +75,8 @@
 										"typeProperties": {
 											"storedProcedureName": "[dbo].[ExecuteQuery]",
 											"storedProcedureParameters": {
-												"": {
-													"value": ""
+												"query": {
+													"value": "@concat('ALTER TABLE ', ''' ,pipeline().parameters.tableName, ''', 'ADD ',  ''' , item().name, ' ', item().type, ''')"
 												}
 											}
 										},
