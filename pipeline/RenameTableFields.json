@@ -4,6 +4,7 @@
 		"activities": [
 			{
 				"name": "RenameCopySQLtoADLSgen2",
+				"description": "Rename table and column names",
 				"type": "ForEach",
 				"dependsOn": [],
 				"userProperties": [],
@@ -37,7 +38,10 @@
 							"typeProperties": {
 								"source": {
 									"type": "AzureSqlSource",
-									"sqlReaderQuery": "@item().source.sql"
+									"sqlReaderQuery": {
+										"value": "@item().source.sql",
+										"type": "Expression"
+									}
 								},
 								"sink": {
 									"type": "DelimitedTextSink",
