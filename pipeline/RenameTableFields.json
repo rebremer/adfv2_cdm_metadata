@@ -1,7 +1,7 @@
 {
 	"name": "RenameTableFields",
 	"properties": {
-		"description": "test",
+		"description": "test23",
 		"activities": [
 			{
 				"name": "RenameCopySQLtoADLSgen2",
