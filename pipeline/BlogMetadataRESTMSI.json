@@ -1,5 +1,5 @@
 {
-	"name": "BlogMetadataAzureFunction",
+	"name": "BlogMetadataRESTMSI",
 	"properties": {
 		"activities": [
 			{
@@ -158,8 +158,8 @@
 							}
 						},
 						{
-							"name": "Write metadata to folder app - Azure Function",
-							"type": "AzureFunctionActivity",
+							"name": "Write metadata to folder app - Web app",
+							"type": "WebActivity",
 							"dependsOn": [
 								{
 									"activity": "CopyTable2ADLSgen2",
@@ -177,16 +177,16 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"functionName": "blogmetadataHTTP",
+								"url": "https://blog-metadata-func3.azurewebsites.net/api/blogmetadataHTTP?code=eX/shvc63eDaWB6MkaZQ12PxTaulakHKk979CdyLIpBNQOl1xQuX8g==",
 								"method": "POST",
 								"body": {
 									"value": "@concat('{\"tableStructureArray\":', string(variables('tableStructureArray')), ',\"processMetaDataStor\":', string(variables('processMetaDataStor')), ',\"tableNameArray\":', string(variables('tableNameArray')), ',\"ADLSgen2stor\":\"', string(pipeline().parameters.ADLSGen2Stor), '\",\"filepath\":\"', concat(pipeline().parameters.ADLSGen2FileSystem,'/', item().destination.fileName, '/', utcnow('yyyy'), '/', utcnow('MM'), '/', utcnow('dd')), '\"}')",
 									"type": "Expression"
+								},
+								"authentication": {
+									"type": "MSI",
+									"resource": "https://blog-metadata-func3.azurewebsites.net"
 								}
-							},
-							"linkedServiceName": {
-								"referenceName": "Blogmetadatafunc",
-								"type": "LinkedServiceReference"
 							}
 						}
 					]
