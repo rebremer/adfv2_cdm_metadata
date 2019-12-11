@@ -2,7 +2,7 @@
 	"name": "GetTableDataFromSQLDB",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "SQLDBAdventureWorksSource",
+			"referenceName": "AzureSqlDatabase1",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {

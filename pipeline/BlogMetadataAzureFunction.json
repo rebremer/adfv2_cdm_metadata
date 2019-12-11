@@ -25,7 +25,13 @@
 							"type": "Copy",
 							"dependsOn": [
 								{
-									"activity": "GetTableStructure",
+									"activity": "SetTableStructure",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								},
+								{
+									"activity": "SetTableName",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -113,6 +119,45 @@
 							}
 						},
 						{
+							"name": "SetTableStructure",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "GetTableStructure",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "tableStructureArray",
+								"value": [
+									"@activity('GetTableStructure').output"
+								]
+							}
+						},
+						{
+							"name": "SetTableName",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "GetTableStructure",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "tableNameArray",
+								"value": {
+									"value": "@array(concat(item().source.schema, item().source.table))",
+									"type": "Expression"
+								}
+							}
+						},
+						{
 							"name": "Write metadata to folder app - Azure Function",
 							"type": "AzureFunctionActivity",
 							"dependsOn": [
@@ -135,7 +180,7 @@
 								"functionName": "blogmetadataHTTP",
 								"method": "POST",
 								"body": {
-									"value": "@{concat('{\"tableStructureArray\":', string(activity('GetTableStructure').output.structure), ',\"processMetaDataStor\":', string(variables('processMetaDataStor')), ',\"tableNameArray\":\"', string(concat(item().source.schema, item().source.table)), '\",\"ADLSgen2stor\":\"', string(pipeline().parameters.ADLSGen2Stor), '\",\"filepath\":\"', concat(pipeline().parameters.ADLSGen2FileSystem,'/', item().destination.fileName, '/', utcnow('yyyy'), '/', utcnow('MM'), '/', utcnow('dd')), '\"}')}",
+									"value": "@concat('{\"tableStructureArray\":', string(variables('tableStructureArray')), ',\"processMetaDataStor\":', string(variables('processMetaDataStor')), ',\"tableNameArray\":', string(variables('tableNameArray')), ',\"ADLSgen2stor\":\"', string(pipeline().parameters.ADLSGen2Stor), '\",\"filepath\":\"', concat(pipeline().parameters.ADLSGen2FileSystem,'/', item().destination.fileName, '/', utcnow('yyyy'), '/', utcnow('MM'), '/', utcnow('dd')), '\"}')",
 									"type": "Expression"
 								}
 							},
@@ -258,6 +303,24 @@
 						},
 						"destination": {
 							"fileName": "SalesLTProductCategory.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "SalesLT",
+							"table": "ProductDescription"
+						},
+						"destination": {
+							"fileName": "SalesLTProductDescription.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "SalesLT",
+							"table": "ProductModel"
+						},
+						"destination": {
+							"fileName": "SalesLTProductModel.txt"
 						}
 					},
 					{

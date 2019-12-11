@@ -1,5 +1,5 @@
 {
-	"name": "BlogMetadataRESTMSI",
+	"name": "BlogMetadataRESTMSIVnet",
 	"properties": {
 		"activities": [
 			{
@@ -158,8 +158,8 @@
 							}
 						},
 						{
-							"name": "Write metadata to folder app - Web app",
-							"type": "WebActivity",
+							"name": "Write metadata to folder app - Vnet REST API",
+							"type": "Copy",
 							"dependsOn": [
 								{
 									"activity": "CopyTable2ADLSgen2",
@@ -177,17 +177,44 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"url": "https://blog-metadata-func3.azurewebsites.net/api/blogmetadataHTTP?code=eX/shvc63eDaWB6MkaZQ12PxTaulakHKk979CdyLIpBNQOl1xQuX8g==",
-								"method": "POST",
-								"body": {
-									"value": "@concat('{\"tableStructureArray\":', string(variables('tableStructureArray')), ',\"processMetaDataStor\":', string(variables('processMetaDataStor')), ',\"tableNameArray\":', string(variables('tableNameArray')), ',\"ADLSgen2stor\":\"', string(pipeline().parameters.ADLSGen2Stor), '\",\"filepath\":\"', concat(pipeline().parameters.ADLSGen2FileSystem,'/', item().destination.fileName, '/', utcnow('yyyy'), '/', utcnow('MM'), '/', utcnow('dd')), '\"}')",
-									"type": "Expression"
+								"source": {
+									"type": "RestSource",
+									"httpRequestTimeout": "00:01:40",
+									"requestInterval": "00.00:00:00.010",
+									"requestMethod": "POST",
+									"requestBody": {
+										"value": "@concat('{\"tableStructureArray\":', string(variables('tableStructureArray')), ',\"processMetaDataStor\":', string(variables('processMetaDataStor')), ',\"tableNameArray\":', string(variables('tableNameArray')), ',\"ADLSgen2stor\":\"', string(pipeline().parameters.ADLSGen2Stor), '\",\"filepath\":\"', concat(pipeline().parameters.ADLSGen2FileSystem,'/', item().destination.fileName, '/', utcnow('yyyy'), '/', utcnow('MM'), '/', utcnow('dd')), '\"}')",
+										"type": "Expression"
+									}
 								},
-								"authentication": {
-									"type": "MSI",
-									"resource": "https://blog-metadata-func3.azurewebsites.net"
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
+									}
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "RestResourceAzureSHIR",
+									"type": "DatasetReference"
 								}
-							}
+							],
+							"outputs": [
+								{
+									"referenceName": "WriteRESTMSIVNETLogging",
+									"type": "DatasetReference",
+									"parameters": {
+										"cw_fileName": "@item().destination.fileName"
+									}
+								}
+							]
 						}
 					]
 				}
