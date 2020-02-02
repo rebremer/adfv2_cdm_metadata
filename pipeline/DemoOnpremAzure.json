@@ -103,8 +103,8 @@
 									"referenceName": "GetTableDataFromSQLDB",
 									"type": "DatasetReference",
 									"parameters": {
-										"cw_schema": "@item().source.schema",
-										"cw_table": "@item().source.table"
+										"cw_schema": "dbo",
+										"cw_table": "ErrorLog"
 									}
 								},
 								"fieldList": [
