@@ -68,8 +68,12 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "SqlServerTable1",
-									"type": "DatasetReference"
+									"referenceName": "DemoSQLonpem",
+									"type": "DatasetReference",
+									"parameters": {
+										"cw_schema": "@item().source.schema",
+										"cw_table": "@item().source.table"
+									}
 								}
 							],
 							"outputs": [
