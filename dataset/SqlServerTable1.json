@@ -5,8 +5,20 @@
 			"referenceName": "SQLonprem",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"cw_schema": {
+				"type": "string"
+			},
+			"cw_table": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "SqlServerTable",
-		"schema": []
+		"schema": [],
+		"typeProperties": {
+			"schema": "@dataset().cw_schema",
+			"table": "@dataset().cw_table"
+		}
 	}
 }
