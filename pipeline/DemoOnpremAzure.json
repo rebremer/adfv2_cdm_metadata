@@ -299,11 +299,11 @@
 					},
 					{
 						"source": {
-							"schema": "Purchasing",
+							"schema": "Production",
 							"table": "ScrapReason"
 						},
 						"destination": {
-							"fileName": "PurchasingScrapReason.txt"
+							"fileName": "ProductionScrapReason.txt"
 						}
 					}
 				]
