@@ -1,5 +1,5 @@
 {
-	"name": "SqlServerTable1",
+	"name": "DemoSQLonpem",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "SQLonprem",
