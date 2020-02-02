@@ -218,6 +218,127 @@
 					},
 					{
 						"source": {
+							"schema": "SalesLT",
+							"table": "Address"
+						},
+						"destination": {
+							"fileName": "SalesLTAddress.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "SalesLT",
+							"table": "Customer"
+						},
+						"destination": {
+							"fileName": "SalesLTCustomer.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "SalesLT",
+							"table": "CustomerAddress"
+						},
+						"destination": {
+							"fileName": "SalesLTCustomerAddress.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "SalesLT",
+							"table": "Product"
+						},
+						"destination": {
+							"fileName": "SalesLTProduct.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "SalesLT",
+							"table": "ProductCategory"
+						},
+						"destination": {
+							"fileName": "SalesLTProductCategory.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "SalesLT",
+							"table": "ProductDescription"
+						},
+						"destination": {
+							"fileName": "SalesLTProductDescription.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "SalesLT",
+							"table": "ProductModel"
+						},
+						"destination": {
+							"fileName": "SalesLTProductModel.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "SalesLT",
+							"table": "ProductModelProductDescription"
+						},
+						"destination": {
+							"fileName": "SalesLTProductModelProductDescription.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "SalesLT",
+							"table": "SalesOrderDetail"
+						},
+						"destination": {
+							"fileName": "SalesLTSalesOrderDetail.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "SalesLT",
+							"table": "SalesOrderHeader"
+						},
+						"destination": {
+							"fileName": "SalesLTSalesOrderHeader.txt"
+						}
+					}
+				]
+			},
+			"ADLSGen2FileSystem": {
+				"type": "string",
+				"defaultValue": "sqldbdata"
+			},
+			"ADLSGen2Stor": {
+				"type": "string",
+				"defaultValue": "blogadlsgen2stor"
+			},
+			"cw_items2": {
+				"type": "string",
+				"defaultValue": [
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "BuildVersion"
+						},
+						"destination": {
+							"fileName": "dboBuildVersion.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "ErrorLog"
+						},
+						"destination": {
+							"fileName": "dboErrorLog.txt"
+						}
+					},
+					{
+						"source": {
 							"schema": "Sales",
 							"table": "CreditCard"
 						},
@@ -307,14 +428,6 @@
 						}
 					}
 				]
-			},
-			"ADLSGen2FileSystem": {
-				"type": "string",
-				"defaultValue": "sqldbdata"
-			},
-			"ADLSGen2Stor": {
-				"type": "string",
-				"defaultValue": "blogadlsgen2stor"
 			}
 		},
 		"variables": {
