@@ -1,5 +1,6 @@
 {
 	"name": "_BlogADFvsecAzureFunction",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"annotations": [],
 		"type": "RestService",

@@ -23,5 +23,6 @@
 				"fileSystem": "sqldbdata"
 			}
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
 }

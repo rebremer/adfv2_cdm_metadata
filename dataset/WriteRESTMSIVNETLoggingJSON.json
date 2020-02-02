@@ -16,9 +16,13 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "model_adfv2directly.json",
-				"folderPath": "@concat(dataset().cw_fileName, '/', utcnow('yyyy'), '/', utcnow('MM'), '/', utcnow('dd'))",
+				"folderPath": {
+					"value": "@concat(dataset().cw_fileName, '/', utcnow('yyyy'), '/', utcnow('MM'), '/', utcnow('dd'))",
+					"type": "Expression"
+				},
 				"fileSystem": "sqldbdata"
 			}
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
 }
