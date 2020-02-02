@@ -218,92 +218,92 @@
 					},
 					{
 						"source": {
-							"schema": "SalesLT",
-							"table": "Address"
+							"schema": "Sales",
+							"table": "CreditCard"
 						},
 						"destination": {
-							"fileName": "SalesLTAddress.txt"
+							"fileName": "SalesCreditCard.txt"
 						}
 					},
 					{
 						"source": {
-							"schema": "SalesLT",
+							"schema": "Sales",
 							"table": "Customer"
 						},
 						"destination": {
-							"fileName": "SalesLTCustomer.txt"
+							"fileName": "SalesCustomer.txt"
 						}
 					},
 					{
 						"source": {
-							"schema": "SalesLT",
-							"table": "CustomerAddress"
+							"schema": "Sales",
+							"table": "PersonCreditCard"
 						},
 						"destination": {
-							"fileName": "SalesLTCustomerAddress.txt"
+							"fileName": "SalesPersonCreditCard.txt"
 						}
 					},
 					{
 						"source": {
-							"schema": "SalesLT",
-							"table": "Product"
+							"schema": "Sales",
+							"table": "Store"
 						},
 						"destination": {
-							"fileName": "SalesLTProduct.txt"
+							"fileName": "SalesStore.txt"
 						}
 					},
 					{
 						"source": {
-							"schema": "SalesLT",
-							"table": "ProductCategory"
+							"schema": "Sales",
+							"table": "SpecialOffer"
 						},
 						"destination": {
-							"fileName": "SalesLTProductCategory.txt"
+							"fileName": "SalesSpecialOffer.txt"
 						}
 					},
 					{
 						"source": {
-							"schema": "SalesLT",
-							"table": "ProductDescription"
+							"schema": "Sales",
+							"table": "SalesReason"
 						},
 						"destination": {
-							"fileName": "SalesLTProductDescription.txt"
+							"fileName": "SalesSalesReason.txt"
 						}
 					},
 					{
 						"source": {
-							"schema": "SalesLT",
-							"table": "ProductModel"
+							"schema": "Sales",
+							"table": "CurrencyRate"
 						},
 						"destination": {
-							"fileName": "SalesLTProductModel.txt"
+							"fileName": "SalesCurrencyRate.txt"
 						}
 					},
 					{
 						"source": {
-							"schema": "SalesLT",
-							"table": "ProductModelProductDescription"
+							"schema": "Production",
+							"table": "WorkOrder"
 						},
 						"destination": {
-							"fileName": "SalesLTProductModelProductDescription.txt"
+							"fileName": "ProductionWorkOrder.txt"
 						}
 					},
 					{
 						"source": {
-							"schema": "SalesLT",
-							"table": "SalesOrderDetail"
+							"schema": "Purchasing",
+							"table": "Vendor"
 						},
 						"destination": {
-							"fileName": "SalesLTSalesOrderDetail.txt"
+							"fileName": "PurchasingVendor.txt"
 						}
 					},
 					{
 						"source": {
-							"schema": "SalesLT",
-							"table": "SalesOrderHeader"
+							"schema": "Purchasing",
+							"table": "ScrapReason"
 						},
 						"destination": {
-							"fileName": "SalesLTSalesOrderHeader.txt"
+							"fileName": "PurchasingScrapReason.txt"
 						}
 					}
 				]
