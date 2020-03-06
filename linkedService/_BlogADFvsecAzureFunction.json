@@ -1,6 +1,5 @@
 {
 	"name": "_BlogADFvsecAzureFunction",
-	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"annotations": [],
 		"type": "RestService",
@@ -11,8 +10,9 @@
 			"aadResourceId": "https://blog-adfv2sec-fun.azurewebsites.net"
 		},
 		"connectVia": {
-			"referenceName": "blog-adfv2sec-shir",
+			"referenceName": "WestEuropeRuntime",
 			"type": "IntegrationRuntimeReference"
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/linkedservices"
 }
