@@ -6,8 +6,7 @@
 		"typeProperties": {
 			"url": "https://blog-metadata-func3.azurewebsites.net/api/blogmetadataHTTP?code=eX/shvc63eDaWB6MkaZQ12PxTaulakHKk979CdyLIpBNQOl1xQuX8g==",
 			"enableServerCertificateValidation": true,
-			"authenticationType": "ManagedServiceIdentity",
-			"aadResourceId": "https://blog-metaddata-func3.azurewebsites.net"
+			"authenticationType": "Anonymous"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/linkedservices"
