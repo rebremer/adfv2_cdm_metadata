@@ -1,0 +1,201 @@
+{
+	"name": "Onprem2AzureSQL",
+	"properties": {
+		"activities": [
+			{
+				"name": "CopySQLtoADLSgen2",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.cw_items",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "CopyTable2ADLSgen2",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [
+								{
+									"name": "Source",
+									"value": "@{item().source.schema}.@{item().source.table}"
+								},
+								{
+									"name": "Destination",
+									"value": "dbtest1//@{item().destination.fileName}"
+								}
+							],
+							"typeProperties": {
+								"source": {
+									"type": "SqlServerSource",
+									"queryTimeout": "02:00:00"
+								},
+								"sink": {
+									"type": "AzureSqlSink"
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "DemoSQLonpem",
+									"type": "DatasetReference",
+									"parameters": {
+										"cw_schema": "@item().source.schema",
+										"cw_table": "@item().source.table"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "BlogADFvsecSQL",
+									"type": "DatasetReference",
+									"parameters": {
+										"cw_schema": "@item().source.schema",
+										"cw_table": "@item().source.table"
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"cw_items": {
+				"type": "Array",
+				"defaultValue": [
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "AWBuildVersion"
+						},
+						"destination": {
+							"fileName": "dboAWBuildVersion.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "ErrorLog"
+						},
+						"destination": {
+							"fileName": "dboErrorLog.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "Sales",
+							"table": "CreditCard"
+						},
+						"destination": {
+							"fileName": "SalesCreditCard.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "Sales",
+							"table": "Customer"
+						},
+						"destination": {
+							"fileName": "SalesCustomer.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "Sales",
+							"table": "PersonCreditCard"
+						},
+						"destination": {
+							"fileName": "SalesPersonCreditCard.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "Sales",
+							"table": "Store"
+						},
+						"destination": {
+							"fileName": "SalesStore.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "Sales",
+							"table": "SpecialOffer"
+						},
+						"destination": {
+							"fileName": "SalesSpecialOffer.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "Sales",
+							"table": "SalesReason"
+						},
+						"destination": {
+							"fileName": "SalesSalesReason.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "Sales",
+							"table": "CurrencyRate"
+						},
+						"destination": {
+							"fileName": "SalesCurrencyRate.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "Production",
+							"table": "WorkOrder"
+						},
+						"destination": {
+							"fileName": "ProductionWorkOrder.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "Purchasing",
+							"table": "Vendor"
+						},
+						"destination": {
+							"fileName": "PurchasingVendor.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "Production",
+							"table": "ScrapReason"
+						},
+						"destination": {
+							"fileName": "ProductionScrapReason.txt"
+						}
+					}
+				]
+			}
+		},
+		"variables": {
+			"tableStructureArray": {
+				"type": "Array"
+			},
+			"tableNameArray": {
+				"type": "Array"
+			},
+			"processMetaDataStor": {
+				"type": "Array"
+			}
+		},
+		"annotations": []
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
