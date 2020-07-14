@@ -32,12 +32,8 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "InsertcvstoSQLDB",
-						"type": "DatasetReference",
-						"parameters": {
-							"TableName": "@pipeline().parameters.tableName",
-							"TableSchema": "@pipeline().parameters.tableStructure"
-						}
+						"referenceName": "InsertcvstoSQLDB_fixed",
+						"type": "DatasetReference"
 					}
 				]
 			}
