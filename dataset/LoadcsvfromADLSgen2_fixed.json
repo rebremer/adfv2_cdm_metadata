@@ -34,7 +34,7 @@
 				"nullValue": "NULL",
 				"treatEmptyAsNull": true,
 				"skipLineCount": 0,
-				"firstRowAsHeader": false
+				"firstRowAsHeader": true
 			},
 			"fileName": "",
 			"folderPath": "sqldbdata/dboBuildVersion.txt/2020/02/04"
