@@ -46,7 +46,7 @@
 			}
 		],
 		"typeProperties": {
-			"tableName": "[dbo].[ErrorLog]"
+			"tableName": "[dbo].[BuildVersion]"
 		}
 	}
 }
