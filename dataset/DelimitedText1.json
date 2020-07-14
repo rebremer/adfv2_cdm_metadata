@@ -18,6 +18,23 @@
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
-		"schema": []
+		"schema": [
+			{
+				"name": "SystemInformationID",
+				"type": "String"
+			},
+			{
+				"name": " Database Version",
+				"type": "String"
+			},
+			{
+				"name": " VersionDate",
+				"type": "String"
+			},
+			{
+				"name": " ModifiedDate",
+				"type": "String"
+			}
+		]
 	}
 }
