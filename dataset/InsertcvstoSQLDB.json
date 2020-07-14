@@ -15,15 +15,46 @@
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
-		"structure": {
-			"value": "@dataset().TableSchema",
-			"type": "Expression"
-		},
-		"typeProperties": {
-			"tableName": {
-				"value": "@dataset().TableName",
-				"type": "Expression"
+		"structure": [
+			{
+				"name": "ErrorLogID",
+				"type": "Int32"
+			},
+			{
+				"name": "ErrorTime",
+				"type": "DateTime"
+			},
+			{
+				"name": "UserName",
+				"type": "String"
+			},
+			{
+				"name": "ErrorNumber",
+				"type": "Int32"
+			},
+			{
+				"name": "ErrorSeverity",
+				"type": "Int32"
+			},
+			{
+				"name": "ErrorState",
+				"type": "Int32"
+			},
+			{
+				"name": "ErrorProcedure",
+				"type": "String"
+			},
+			{
+				"name": "ErrorLine",
+				"type": "Int32"
+			},
+			{
+				"name": "ErrorMessage",
+				"type": "String"
 			}
+		],
+		"typeProperties": {
+			"tableName": "[dbo].[ErrorLog]"
 		}
 	}
 }
