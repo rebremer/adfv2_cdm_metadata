@@ -7,6 +7,24 @@
 		},
 		"annotations": [],
 		"type": "AzureBlobFSFile",
+		"structure": [
+			{
+				"name": "Prop_0",
+				"type": "String"
+			},
+			{
+				"name": "Prop_1",
+				"type": "String"
+			},
+			{
+				"name": "Prop_2",
+				"type": "String"
+			},
+			{
+				"name": "Prop_3",
+				"type": "String"
+			}
+		],
 		"typeProperties": {
 			"format": {
 				"type": "TextFormat",
@@ -19,7 +37,7 @@
 				"firstRowAsHeader": false
 			},
 			"fileName": "",
-			"folderPath": "sqldbdata/dboBuildVersion.txt/2020/07/09"
+			"folderPath": "dboBuildVersion.txt/2020/02/04"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
