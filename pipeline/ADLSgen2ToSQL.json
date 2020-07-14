@@ -1,0 +1,51 @@
+{
+	"name": "ADLSgen2ToSQL",
+	"properties": {
+		"activities": [
+			{
+				"name": "csvToSQL",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureBlobFSSource",
+						"recursive": true
+					},
+					"sink": {
+						"type": "AzureSqlSink"
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "LoadcsvfromADLSgen2",
+						"type": "DatasetReference",
+						"parameters": {
+							"File": "@pipeline().parameters.folderFileName",
+							"Schema": "@pipeline().parameters.tableStructure"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "InsertcvstoSQLDB",
+						"type": "DatasetReference",
+						"parameters": {
+							"TableName": "@pipeline().parameters.tableName",
+							"TableSchema": "@pipeline().parameters.tableStructure"
+						}
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}
