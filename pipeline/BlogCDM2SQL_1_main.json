@@ -32,6 +32,9 @@
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
 						"recursive": true
+					},
+					"formatSettings": {
+						"type": "BinaryReadSettings"
 					}
 				}
 			},
@@ -72,6 +75,9 @@
 										"type": "AzureBlobFSReadSettings",
 										"recursive": false,
 										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "JsonReadSettings"
 									}
 								},
 								"dataset": {
