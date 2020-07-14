@@ -9,19 +9,19 @@
 		"type": "AzureBlobFSFile",
 		"structure": [
 			{
-				"name": "Prop_0",
+				"name": "SystemInformationID",
 				"type": "String"
 			},
 			{
-				"name": "Prop_1",
+				"name": " Database Version",
 				"type": "String"
 			},
 			{
-				"name": "Prop_2",
+				"name": " VersionDate",
 				"type": "String"
 			},
 			{
-				"name": "Prop_3",
+				"name": " ModifiedDate",
 				"type": "String"
 			}
 		],

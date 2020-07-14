@@ -22,7 +22,16 @@
 					"sink": {
 						"type": "AzureSqlSink"
 					},
-					"enableStaging": false
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"columnMappings": {
+							"SystemInformationID": "SystemInformationID",
+							" Database Version": "Database Version",
+							" VersionDate": "VersionDate",
+							" ModifiedDate": "ModifiedDate"
+						}
+					}
 				},
 				"inputs": [
 					{

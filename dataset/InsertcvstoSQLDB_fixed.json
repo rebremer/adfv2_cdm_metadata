@@ -9,40 +9,20 @@
 		"type": "AzureSqlTable",
 		"structure": [
 			{
-				"name": "ErrorLogID",
-				"type": "Int32"
+				"name": "SystemInformationID",
+				"type": "Byte"
 			},
 			{
-				"name": "ErrorTime",
+				"name": "Database Version",
+				"type": "String"
+			},
+			{
+				"name": "VersionDate",
 				"type": "DateTime"
 			},
 			{
-				"name": "UserName",
-				"type": "String"
-			},
-			{
-				"name": "ErrorNumber",
-				"type": "Int32"
-			},
-			{
-				"name": "ErrorSeverity",
-				"type": "Int32"
-			},
-			{
-				"name": "ErrorState",
-				"type": "Int32"
-			},
-			{
-				"name": "ErrorProcedure",
-				"type": "String"
-			},
-			{
-				"name": "ErrorLine",
-				"type": "Int32"
-			},
-			{
-				"name": "ErrorMessage",
-				"type": "String"
+				"name": "ModifiedDate",
+				"type": "DateTime"
 			}
 		],
 		"typeProperties": {
