@@ -1,5 +1,5 @@
 {
-	"name": "InsertcvstoSQLDB_fixed",
+	"name": "InsertcvstoSQLDB_fixed_New1",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureSqlDatabase1",
@@ -7,22 +7,27 @@
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
-		"structure": [
+		"schema": [
 			{
 				"name": "SystemInformationID",
-				"type": "Int32"
+				"type": "int",
+				"precision": 10
 			},
 			{
 				"name": "Database Version",
-				"type": "String"
+				"type": "nvarchar"
 			},
 			{
 				"name": "VersionDate",
-				"type": "DateTime"
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
 			},
 			{
 				"name": "ModifiedDate",
-				"type": "DateTime"
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
 			}
 		],
 		"typeProperties": {

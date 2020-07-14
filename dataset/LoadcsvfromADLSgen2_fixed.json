@@ -13,15 +13,7 @@
 				"type": "String"
 			},
 			{
-				"name": " Database Version",
-				"type": "String"
-			},
-			{
 				"name": " VersionDate",
-				"type": "String"
-			},
-			{
-				"name": " ModifiedDate",
 				"type": "String"
 			}
 		],
@@ -29,9 +21,9 @@
 			"format": {
 				"type": "TextFormat",
 				"columnDelimiter": ",",
-				"rowDelimiter": "",
 				"quoteChar": "\"",
-				"nullValue": "NULL",
+				"nullValue": "\\N",
+				"encodingName": null,
 				"treatEmptyAsNull": true,
 				"skipLineCount": 0,
 				"firstRowAsHeader": true
