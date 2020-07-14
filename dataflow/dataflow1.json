@@ -15,7 +15,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "InsertcvstoSQLDB_fixed",
+						"referenceName": "InsertcvstoSQLDB_fixed_New2",
 						"type": "DatasetReference"
 					},
 					"name": "sink1"
