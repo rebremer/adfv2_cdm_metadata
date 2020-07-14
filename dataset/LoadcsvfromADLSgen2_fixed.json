@@ -37,7 +37,7 @@
 				"firstRowAsHeader": true
 			},
 			"fileName": "",
-			"folderPath": "sqldbdata/dboBuildVersion.txt/2020/02/041"
+			"folderPath": "sqldbdata/dboBuildVersion.txt/2020/02/04"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
