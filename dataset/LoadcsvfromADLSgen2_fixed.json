@@ -5,20 +5,8 @@
 			"referenceName": "Blogadlsgen2stor",
 			"type": "LinkedServiceReference"
 		},
-		"parameters": {
-			"File": {
-				"type": "String"
-			},
-			"Schema": {
-				"type": "Array"
-			}
-		},
 		"annotations": [],
 		"type": "AzureBlobFSFile",
-		"structure": {
-			"value": "@dataset().Schema",
-			"type": "Expression"
-		},
 		"typeProperties": {
 			"format": {
 				"type": "TextFormat",
