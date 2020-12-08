@@ -2,7 +2,7 @@
 	"name": "RestResourceAzureSHIR",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "_BlogADFvsecAzureFunction",
+			"referenceName": "RestServiceSHIR",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
