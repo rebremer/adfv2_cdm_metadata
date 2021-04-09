@@ -1,0 +1,151 @@
+{
+	"name": "CSVtoSQLDBTableDynamicMapping",
+	"properties": {
+		"activities": [
+			{
+				"name": "CopyCsvToTables",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.sourcesink",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "stor to table with dynamic schema",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "CreateMappingCsvTableUsingPosition",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "DelimitedTextSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "DelimitedTextReadSettings"
+									}
+								},
+								"sink": {
+									"type": "AzureSqlSink"
+								},
+								"enableStaging": false,
+								"enableSkipIncompatibleRow": false,
+								"translator": {
+									"value": "@json(activity('CreateMappingCsvTableUsingPosition').output.firstRow.json_output)",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "GetCsvFileStructure",
+							"type": "GetMetadata",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"fieldList": [
+									"structure"
+								],
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							}
+						},
+						{
+							"name": "CreateMappingCsvTableUsingPosition",
+							"type": "Lookup",
+							"dependsOn": [
+								{
+									"activity": "GetCsvFileStructure",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"sqlReaderStoredProcedureName": "[dbo].[sp_doSourceSinkColumnMapping]",
+									"storedProcedureParameters": {
+										"input_json": {
+											"type": "String",
+											"value": {
+												"value": "@trim(string(activity('GetCsvFileStructure').output.structure))",
+												"type": "Expression"
+											}
+										},
+										"table_name": {
+											"type": "String",
+											"value": {
+												"value": "@item().sink",
+												"type": "Expression"
+											}
+										}
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								}
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"sourcesink": {
+				"type": "array",
+				"defaultValue": [
+					{
+						"source": "bsc_pymt_agrm_ds_original.csv",
+						"sink": "SA_BSC_PYMT_AGRM_DS_SOURCE"
+					},
+					{
+						"source": "persoon.csv",
+						"sink": "person"
+					}
+				]
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2021-04-08T10:49:35Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
